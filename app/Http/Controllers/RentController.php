@@ -54,17 +54,47 @@ class RentController extends Controller
  
     public function store(UserCreateRequest $request)
     {
+        
         $usercontroller = new UserController();
-        $user = $usercontroller->store( $request);
+        $user = $usercontroller->store($request);
 
+        $this->createRent($user,$request);
+
+        // $rent = new Rent();
+        // $rent->room_id = $request->id;
+        // $rent->user_id = $user->id;
+        // $rent->startdate = $request->startdate;
+        // $rent->endingdate = $request->endingdate;
+        // $rent->description = $request->description;
+
+
+        // $rent->save();
+
+        // $room = Room::findOrFail($rent->room_id);
+
+        // $room->status = '1';
+
+        // $room->save();
+        
+        return back();  
+    }
+
+    public function save(Request $request){
+        
+        $user = User::findOrFail($request->user_id);
+        $this->createRent($user,$request);
+
+        return back();
+    }
+
+
+    public function createRent(User $user,Request $request){
         $rent = new Rent();
         $rent->room_id = $request->id;
         $rent->user_id = $user->id;
         $rent->startdate = $request->startdate;
         $rent->endingdate = $request->endingdate;
         $rent->description = $request->description;
-
-
         $rent->save();
 
         $room = Room::findOrFail($rent->room_id);
@@ -72,8 +102,9 @@ class RentController extends Controller
         $room->status = '1';
 
         $room->save();
-        
-        return back();  
+     
+        return back();
+
     }
 
     public function AddService(Request $request)
@@ -112,5 +143,10 @@ class RentController extends Controller
         
         $rent->save();
         return back();
+    }
+
+    public function show(Request $request)
+    {
+        return $request;
     }
 }

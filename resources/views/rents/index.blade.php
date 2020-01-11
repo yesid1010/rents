@@ -49,12 +49,18 @@
                         </button>
                     </td>
                     <td class="text-center">
-                        <button class="btn btn-primary" type="button"
-                            data-toggle="modal"
-                            data-id = "{{$rent->idRe}}"
-                            data-target="#abrirmodalCancelarArriendo">
-                            Cancelar
-                        </button>
+                        @if($rent->status == 0 )
+                            <button class="btn btn-primary" type="button"
+                                data-toggle="modal"
+                                data-id = "{{$rent->idRe}}"
+                                data-target="#abrirmodalCancelarArriendo">
+                                Cancelar
+                            </button>
+                        @else
+                            <button class="btn disabled btn-dark" type="button">
+                                Pagado
+                            </button>
+                        @endif
                     </td>
                     {{-- <td class="text-center">
                         @if($rent->status == 0)
@@ -74,7 +80,7 @@
                         @endif
                     </td> --}}
                     <td class="text-center">
-                        <form action="{{route('rents.index')}}" method="get">
+                        <form action="{{route('rents.show','test')}}" method="get">
                             @csrf
                             <input type="hidden" value="{{$rent->idRe}}" name="id">
                             <button class= "btn btn-success" type="submit">
@@ -94,14 +100,14 @@
     <div class="modal-dialog modal-dialog-scrollable modal-primary modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Agregar Arriendos</h4>
+                <h4 class="modal-title">Agregar Arriendo</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
             
             <div class="modal-body">
-                <form action="{{route('rents.store')}}" method="post" class="form-horizontal">
+                <form action="{{route('save')}}" method="post" class="form-horizontal">
                     {{csrf_field()}}
                     @include('rents.form')
                 </form>

@@ -32,6 +32,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('addservice','RentController@AddService')->name('addservices');
 
+    Route::post('saverent','RentController@save')->name('save');
+
+
     Route::resource('rooms', 'RoomController');
     Route::resource('rents', 'RentController');
     Route::resource('services', 'ServiceController');

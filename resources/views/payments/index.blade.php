@@ -4,7 +4,7 @@
 <div class="container"> 
 
     <div class="card-body">
-        <table id="tablaServicios" class="table table-bordered table-striped">
+        <table id="tablaPayments" class="table table-bordered table-striped">
             <thead class="bg-primary">
                 <tr>
                     <th>Usuario</th>
