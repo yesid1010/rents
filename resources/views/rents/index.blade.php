@@ -32,6 +32,7 @@
                     <th>Servicios</th>
                     <th>Cancelar Arriendo</th>
                     <th>Detalles</th>
+                    <th>Imprimir</th>
                 </tr>
             </thead>
 
@@ -61,6 +62,10 @@
                                 data-target="#abrirmodalAgregarServicio">
                                 Agregar
                             </button>
+                        @else
+                            <button disabled class="btn  btn-dark" type="button">
+                                Agregar
+                            </button>
                         @endif
                     </td>
                     <td class="text-center">
@@ -85,6 +90,20 @@
                                 <i class="fa fa-pencil " aria-hidden="true"></i>
                             </button> 
                         </form>
+                    </td>
+                    <td class="text-center">
+                      @if($rent->fingerprint != null && $rent->status == 1)  
+                        <form target="_blank" action="{{route('pdf',$rent->idRe)}}" method="get">
+                            
+                            <button class= "btn btn-danger" type="submit">
+                                <i class="fa fa-print" aria-hidden="true"></i>
+                            </button> 
+                        </form>
+                      @else
+                        <button disabled class= "btn btn-secondary" type="submit">
+                            <i class="fa fa-print" aria-hidden="true"></i>
+                        </button> 
+                    @endif
                     </td>
                 </tr>
             @endforeach

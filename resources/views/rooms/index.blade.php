@@ -99,13 +99,13 @@
                             
                         </div>
                         <div class="card-footer">
-                            {{-- <form action="{{route('status',$room->id)}}" method="get">
+                            <form action="{{route('status',$room->id)}}" method="get">
                                 @csrf
                                 <button class= "btn btn-outline-dark" type="submit">
                                     Liberar
                                 </button>
-                            </form> --}}
-                            <button class="btn btn-outline-dark" type="button"
+                            </form>
+                            {{-- <button class="btn btn-outline-dark" type="button"
                                 data-target="#abrirmodalEditarRoom"
                                 data-toggle="modal" 
                                 data-id="{{$room->id}}"
@@ -113,7 +113,7 @@
                                 data-price="{{$room->price}}"
                                 data-description="{{$room->description}}">  
                                 Detalles
-                            </button>
+                            </button> --}}
                            
                         </div>
                       </div>

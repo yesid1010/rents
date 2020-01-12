@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('saverent','RentController@save')->name('save');
 
+    Route::get('pdf/{id}','PaymentController@pdf')->name('pdf');
 
 
 

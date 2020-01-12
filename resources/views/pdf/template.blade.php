@@ -101,7 +101,7 @@
 @endif 
         <div class="row">
             <div class="col-md-6 float-right mt-5">
-                    Total A Pagar : {{ number_format($total, 0 )}}
+                    Total A Pagar : {{ number_format($payment->total, 0 )}}
             </div>
         </div>
 </div>

@@ -55,10 +55,10 @@
                             </li>
                             <li class="nav-item navbar-brand">
                                 <a class="nav-link" href="{{ route('services.index') }}">{{ __('Servicios') }}</a>
-                            </li>
+                            {{-- </li>
                             <li class="nav-item navbar-brand">
                                 <a class="nav-link" href="{{ route('payments.index') }}">{{ __('Pagos') }}</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item navbar-brand">
                                 <a class="nav-link" href="{{ route('users.index') }}">{{ __('Clientes') }}</a>
                             </li>

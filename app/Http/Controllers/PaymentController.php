@@ -40,23 +40,8 @@ class PaymentController extends Controller
 
         $payment->save();
 
-        $room       = $this->room($request->id);
-        $huesped    = $this->user($request->id);
-        $rent       = $this->rent($request->id);
-        $services   = $this->services($request->id);
+        return back();
 
-
-        $rent_      = Rent::findOrFail($request->id);
-
-        $pdf = \PDF::loadView('pdf.rent',['payment'=>$payment,
-                                          'empleado'=>$user,
-                                          'total'=>$total,
-                                          'room'=>$room,
-                                          'huesped'=>$huesped,
-                                          'rent'=>$rent,
-                                          'rent_'=>$rent_,
-                                          'services'=>$services]);
-        return $pdf->stream('pdf'.$request->id.'.pdf');
     }
 
 
@@ -118,13 +103,41 @@ class PaymentController extends Controller
 
     public function services($id){
         $services = DB::table('rents')
-        ->join('rent_service','rent_service.rent_id','=','rents.id')
-        ->join('services','services.id','=','rent_service.service_id')
-        ->select('services.name as nameService',
-                 'services.price as priceService')
-        ->where('rents.id','=',$id)
-        ->get();
+                        ->join('rent_service','rent_service.rent_id','=','rents.id')
+                        ->join('services','services.id','=','rent_service.service_id')
+                        ->select('services.name as nameService',
+                                'services.price as priceService')
+                        ->where('rents.id','=',$id)
+                        ->get();
 
         return $services;
+    }
+
+    public function payment($id){
+        $payment = DB::table('rents')
+                    ->join('payments','payments.rent_id','=','rents.id')
+                    ->where('rents.id','=',$id)
+                    ->first();
+
+        return $payment;
+    }
+
+    public function pdf($id){
+        $user       = Auth::user();
+        $room       = $this->room($id);
+        $huesped    = $this->user($id);
+        $rent       = $this->rent($id);
+        $services   = $this->services($id);
+        $payment    = $this->payment($id);
+        $rent_      = Rent::findOrFail($id);
+
+        $pdf = \PDF::loadView('pdf.rent',['payment'=>$payment,
+                                          'empleado'=>$user,
+                                          'room'=>$room,
+                                          'huesped'=>$huesped,
+                                          'rent'=>$rent,
+                                          'rent_'=>$rent_,
+                                          'services'=>$services]);
+        return $pdf->stream('pdf'.$id.'.pdf');
     }
 }
