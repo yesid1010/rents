@@ -67,7 +67,15 @@
                                         data-target="#abrirmodalArrendarRoom">
                                     Arrendar
                                 </button>
-
+                                <button class="btn btn-outline-dark" type="button"
+                                    data-target="#abrirmodalEditarRoom"
+                                    data-toggle="modal" 
+                                    data-id="{{$room->id}}"
+                                    data-name="{{$room->name}}"
+                                    data-price="{{$room->price}}"
+                                    data-description="{{$room->description}}">  
+                                    Editar
+                                </button>
                             </div>
                     </div>
                 </div>

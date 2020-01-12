@@ -211,7 +211,7 @@
                     <div class="form-group row">
                         <label class="col-md-4 form-control-label" for="text-input">Número de huella : </label>
                         <div class="col-md-4">
-                            <input type="number" name="fingerprint" id="fingerprint"  required class="form-control" >  
+                            <input type="number"  name="fingerprint" id="fingerprint"  required class="form-control" >  
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -12,7 +12,7 @@
 <div class="form-group row">
   <label class="col-md-3 form-control-label" for="cliente">Habitacion : </label>
   <div class="col-md-5">
-      <select class="form-control" name="id" id="ex-search2">
+      <select class="form-control" required name="id" id="ex-search2">
         @foreach ($rooms as $room)
           <option value="{{$room->id}}">{{$room->name}}</option>
         @endforeach
@@ -35,7 +35,7 @@
 <div class="form-group row">
   <label class="col-md-3 form-control-label" for="unity">Descripcion : </label>
   <div class="col-md-5">
-    <textarea  name="description" id="description" rows ="2" class="form-control" placeholder="Ingrese descripcion"></textarea>
+    <textarea  name="description" id="description" required rows ="2" class="form-control" placeholder="Ingrese descripcion"></textarea>
   </div>
 </div>
 
