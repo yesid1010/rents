@@ -28,6 +28,7 @@
                     <th>Habitacion</th>
                     <th>Fecha Inicio</th>
                     <th>Fecha Final</th> 
+                    <th>Huella</th>
                     <th>Servicios</th>
                     <th>Cancelar Arriendo</th>
                     <th>Detalles</th>
@@ -41,12 +42,26 @@
                     <td>{{$rent->startdate}}</td>
                     <td>{{$rent->endingdate}}</td>
                     <td class="text-center">
-                        <button class="btn btn-primary" type="button"
-                            data-toggle="modal"
-                            data-id = "{{$rent->idRe}}"
-                            data-target="#abrirmodalAgregarServicio">
-                            Agregar
-                        </button>
+                        @if($rent->fingerprint == 0 )
+                            <button class="btn btn-primary" type="button"
+                                data-toggle="modal"
+                                data-id = "{{$rent->idRe}}"
+                                data-target="#abrirmodalFingerprint">
+                                Agregar
+                            </button>
+                        @else
+                            <label class="form-control-label">{{$rent->fingerprint}}</label>
+                        @endif
+                    </td>
+                    <td class="text-center">
+                        @if($rent->status == 0 )
+                            <button class="btn btn-primary" type="button"
+                                data-toggle="modal"
+                                data-id = "{{$rent->idRe}}"
+                                data-target="#abrirmodalAgregarServicio">
+                                Agregar
+                            </button>
+                        @endif
                     </td>
                     <td class="text-center">
                         @if($rent->status == 0 )
@@ -57,28 +72,11 @@
                                 Cancelar
                             </button>
                         @else
-                            <button class="btn disabled btn-dark" type="button">
+                            <button disabled class="btn  btn-dark" type="button">
                                 Pagado
                             </button>
                         @endif
                     </td>
-                    {{-- <td class="text-center">
-                        @if($rent->status == 0)
-                            <form action="{{route('staturents',$rent->idRe)}}" method="get">
-                                @csrf
-                                <button class= "btn btn-warning" type="submit">
-                                    Pendiente
-                                </button>
-                            </form>
-                        @else
-                            <form action="{{route('staturents',$rent->idRe)}}" method="get">
-                                @csrf
-                                <button class= "btn btn-success" type="submit">
-                                    Cancelado
-                                </button>
-                            </form>
-                        @endif
-                    </td> --}}
                     <td class="text-center">
                         <form action="{{route('rents.show','test')}}" method="get">
                             @csrf
@@ -173,4 +171,41 @@
     <!-- /.modal-dialog -->
 </div>
 <!--Fin del modal Cancelar Arriendo-->
+
+ <!--Inicio del modal fingerprint-->
+ <div class="modal fade" id="abrirmodalFingerprint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-primary modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Agregar Huella</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <form action="{{route('fingerprint')}}" method="post" class="form-horizontal">
+                    
+                    {{csrf_field()}}
+                    <input type="hidden" name="id" id="id" value=""> 
+
+                    <div class="form-group row">
+                        <label class="col-md-4 form-control-label" for="text-input">Número de huella : </label>
+                        <div class="col-md-4">
+                            <input type="number" name="fingerprint" id="fingerprint"  required class="form-control" >  
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button> 
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--Fin del modal fingerprint-->
 @endsection

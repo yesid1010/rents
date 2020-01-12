@@ -147,6 +147,93 @@ class RentController extends Controller
 
     public function show(Request $request)
     {
-        return $request;
+        $user = DB::table('rents')
+                    ->join('users','users.id','=','rents.user_id')
+                    ->select('users.identification as identification',
+                             'users.name as nameUser',
+                             'users.telephone as telephone',
+                             'users.family_telephone as family_telephone',
+                             'users.email as email')
+                    ->where('rents.id','=',$request->id)
+                    ->first();
+
+        $room = DB::table('rents')
+                    ->join('rooms','rooms.id','=','rents.room_id')
+                    ->select('rooms.name as nameRoom',
+                    'rooms.description as descriptionRoom',
+                    'rooms.price as priceRoom')
+                    ->where('rents.id','=',$request->id)
+                    ->first();
+        
+        $rent = DB::table('rents')
+                    ->select('rents.startdate as startdate',
+                             'rents.endingdate as endingdate',
+                             'rents.fingerprint as fingerprint',
+                             'rents.status as statusRent')
+                    ->where('rents.id','=',$request->id)
+                    ->first();
+
+        $services = DB::table('rents')
+                        ->join('rent_service','rent_service.rent_id','=','rents.id')
+                        ->join('services','services.id','=','rent_service.service_id')
+                        ->select('services.name as nameService',
+                                 'services.price as priceService')
+                        ->where('rents.id','=',$request->id)
+                        ->get();
+        
+
+        $total = $this->total($request->id);
+
+        if($rent->statusRent == 1){
+            $payment = DB::table('rents')
+                ->join('payments','payments.rent_id','=','rents.id')
+                ->select('payments.type as type','payments.user_id as userp_id')
+                ->where('rents.id','=',$request->id)
+                ->first();
+
+            $empleado = DB::table('users')->where('id','=',$payment->userp_id)->first();
+
+            return view('rents.show',['user'=>$user,
+                                'room'=>$room,
+                                'rent'=>$rent,
+                                'services'=>$services,
+                                'total'=>$total,
+                                'payment'=>$payment,
+                                'empleado'=>$empleado,
+                                ]);
+        }else{
+            return view('rents.show',['user'=>$user,
+                                'room'=>$room,
+                                'rent'=>$rent,
+                                'services'=>$services,
+                                'total'=>$total
+                                ]);
+        }
+
+    }
+
+
+    public function total($id){
+        $rent = Rent::findOrFail($id);
+        $room = Room::findOrFail($rent->room_id);
+
+        $services =  $rent->services;
+        $total = 0;
+
+        foreach($services as $service){
+            $total = $total + $service->price;
+        }
+
+        return $total + $room->price;
+    }
+
+    public function fingerprint(Request $request){
+        $rent = Rent::findOrFail($request->id);
+
+        $rent->fingerprint = $request->fingerprint;
+
+        $rent->save();
+
+        return back();
     }
 }

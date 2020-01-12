@@ -8,6 +8,7 @@ use App\Service;
 use App\Room;
 use App\Rent_Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
@@ -39,7 +40,23 @@ class PaymentController extends Controller
 
         $payment->save();
 
-        return  back();
+        $room       = $this->room($request->id);
+        $huesped    = $this->user($request->id);
+        $rent       = $this->rent($request->id);
+        $services   = $this->services($request->id);
+
+
+        $rent_      = Rent::findOrFail($request->id);
+
+        $pdf = \PDF::loadView('pdf.rent',['payment'=>$payment,
+                                          'empleado'=>$user,
+                                          'total'=>$total,
+                                          'room'=>$room,
+                                          'huesped'=>$huesped,
+                                          'rent'=>$rent,
+                                          'rent_'=>$rent_,
+                                          'services'=>$services]);
+        return $pdf->stream('pdf'.$request->id.'.pdf');
     }
 
 
@@ -63,48 +80,51 @@ class PaymentController extends Controller
         return $total + $room->price;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Payment $payment)
-    {
-        //
+    public function room($id){
+        $room = DB::table('rents')
+            ->join('rooms','rooms.id','=','rents.room_id')
+            ->select('rooms.name as nameRoom',
+            'rooms.price as priceRoom')
+            ->where('rents.id','=',$id)
+            ->first();
+        
+        return $room;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Payment $payment)
-    {
-        //
+    public function user($id){
+        $user = DB::table('rents')
+        ->join('users','users.id','=','rents.user_id')
+        ->select('users.identification as identification',
+                 'users.name as nameUser',
+                 'users.telephone as telephone',
+                 'users.email as email')
+        ->where('rents.id','=',$id)
+        ->first();
+
+        return $user;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Payment $payment)
-    {
-        //
+    public function rent($id){
+        $rent = DB::table('rents')
+        ->select('rents.startdate as startdate',
+                 'rents.endingdate as endingdate',
+                 'rents.fingerprint as fingerprint',
+                 'rents.status as statusRent')
+        ->where('rents.id','=',$id)
+        ->first();
+
+        return $rent;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Payment $payment)
-    {
-        //
+    public function services($id){
+        $services = DB::table('rents')
+        ->join('rent_service','rent_service.rent_id','=','rents.id')
+        ->join('services','services.id','=','rent_service.service_id')
+        ->select('services.name as nameService',
+                 'services.price as priceService')
+        ->where('rents.id','=',$id)
+        ->get();
+
+        return $services;
     }
 }

@@ -78,5 +78,14 @@ $('#abrirmodalCancelarArriendo').on('show.bs.modal',function(event){
 
 })
 
+$('#abrirmodalFingerprint').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+ 
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+
+})
+
 
 $(".alert").fadeOut(4000 );
