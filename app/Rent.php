@@ -13,8 +13,13 @@ class Rent extends Model
         return $this->belongsToMany(Service::class);
     }
 
-    // en una renta puede haber una sola habitacion
+    // en un arriendo puede haber una sola habitacion
     public function room(){
         return $this->belongsTo(Room::class);
+    }
+
+    // un arriendo puede tener uno o mas pagos
+    public function payments(){
+        return $this->hasMany(Payment::class);
     }
 }

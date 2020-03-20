@@ -18,6 +18,8 @@
 </div>
 
 <div class="modal-footer">
+    <label for="" class="form-control-label col-md-2">Total : </label>
+    <input type="text" name="total" disabled  class="form-control col-md-4" id="total">
     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
-    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button> 
+    <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Aceptar</button> 
 </div>

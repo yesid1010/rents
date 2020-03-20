@@ -26,6 +26,14 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('deletedroom','RoomController@destroy')->name('destroyroom');
     Route::post('deletedservice','ServiceController@destroy')->name('destroyservice');
 
+    Route::post('deletedserviceR','ServiceController@deleteService')->name('deleteserviceR');
+
+    Route::post('deletedpaymentR','PaymentController@DeletePayment')->name('deletepaymentR');
+    
+
+    Route::post('closeRent','RentController@CloseRent')->name('cerrararriendo');
+
+
     Route::get('statusrent/{id}','RentController@State')->name('staturents');
 
     Route::post('addservice','RentController@AddService')->name('addservices');
@@ -38,7 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('pdf/{id}','PaymentController@pdf')->name('pdf');
 
-
+    Route::get('detailrent','RentController@Detail')->name('detailr');
 
     Route::resource('rooms', 'RoomController');
     Route::resource('rents', 'RentController');

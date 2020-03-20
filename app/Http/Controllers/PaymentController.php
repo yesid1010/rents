@@ -25,6 +25,7 @@ class PaymentController extends Controller
         return view('payments.index',['payments'=>$payments]);
     }
 
+    // metodo para crear un abono
     public function store(Request $request)
     {
         $user                   = Auth::user();
@@ -33,17 +34,25 @@ class PaymentController extends Controller
         $payment->user_id       = $user->id;
         $payment->description   = $request->description;
         $payment->type          = $request->type;
-
-        $total = $this->total($request->id);
-        
-        $payment->total = $total;
-
+        $payment->total         = $request->abono;
         $payment->save();
+        $this->abonar($request->id,$payment->total);
+        
+       // $payment->total = $total;
 
         return back();
 
     }
 
+    // metodo para restar al total del arriendo, el abono actual
+    public function abonar($id,$abono){
+        $rent = Rent::findOrFail($id);
+
+        $rent->total = $rent->total - $abono;
+        $rent->save();
+
+        return back();
+    }
 
 
     public function total($id){
@@ -65,6 +74,7 @@ class PaymentController extends Controller
         return $total + $room->price;
     }
 
+    // metodo para traer el nombre y el precio de la habitacion de un arriendo
     public function room($id){
         $room = DB::table('rents')
             ->join('rooms','rooms.id','=','rents.room_id')
@@ -75,7 +85,7 @@ class PaymentController extends Controller
         
         return $room;
     }
-
+// metodo para traer los datos de un usuario huesped de un arriendo
     public function user($id){
         $user = DB::table('rents')
         ->join('users','users.id','=','rents.user_id')
@@ -89,6 +99,7 @@ class PaymentController extends Controller
         return $user;
     }
 
+    // metodo para traer los datos de un arriendo en especifica
     public function rent($id){
         $rent = DB::table('rents')
         ->select('rents.startdate as startdate',
@@ -101,6 +112,7 @@ class PaymentController extends Controller
         return $rent;
     }
 
+    // metodo para traer los servicios asociados a un arriendo
     public function services($id){
         $services = DB::table('rents')
                         ->join('rent_service','rent_service.rent_id','=','rents.id')
@@ -113,6 +125,7 @@ class PaymentController extends Controller
         return $services;
     }
 
+    // metodo que devuelve el pago asociado a un arriendo
     public function payment($id){
         $payment = DB::table('rents')
                     ->join('payments','payments.rent_id','=','rents.id')
@@ -139,5 +152,18 @@ class PaymentController extends Controller
                                           'rent_'=>$rent_,
                                           'services'=>$services]);
         return $pdf->stream('pdf'.$id.'.pdf');
+    }
+
+
+    public function DeletePayment(Request $request){
+        $payment =  Payment::findOrFail($request->id);
+        $rent = Rent::findOrFail($payment->rent_id);
+
+        $rent->total = $rent->total + $payment->total;
+
+        $rent->save();
+        $payment->delete();
+
+        return back()->with('mensajeok', '!! abono eliminado con exito !!');
     }
 }

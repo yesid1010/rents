@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Service;
+use App\Rent_Service;
+use App\Rent;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -56,6 +58,18 @@ class ServiceController extends Controller
     {
         $service =  Service::findOrFail($request->id);
         $service->delete();
+        return back()->with('mensajeok', '!! Servicio eliminado con exito !!');
+    }
+
+    public function deleteService(Request $request){
+        $rent_service =  Rent_Service::findOrFail($request->id);
+        $rent = Rent::findOrFail($rent_service->rent_id);
+
+        $rent->total = $rent->total - $rent_service->total;
+
+        $rent->save();
+        $rent_service->delete();
+
         return back()->with('mensajeok', '!! Servicio eliminado con exito !!');
     }
 }

@@ -38,15 +38,15 @@
         
             @if($room->status == 0)
                 <div class="col-md-3 mt-4">
-                    <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                    <div class="card text-success border-success mb-3" style="max-width: 18rem;">
                         <div class="card-header">{{$room->name}}
                         @if(count($room->rents) == 0)
-                            <button class="btn btn-outline-dark float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
+                            <button class="btn btn-outline-success float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         @else
 
-                            <button class="btn btn-outline-dark float-right" type="button"
+                            <button class="btn btn-outline-success float-right" type="button"
                                 data-target="#abrirmodalEditarRoom"
                                 data-toggle="modal" 
                                 data-id="{{$room->id}}"
@@ -61,13 +61,13 @@
                                 <h5 class="card-title">Precio: {{ number_format($room->price, 0 ) }}</h5>        
                             </div>
                             <div class="card-footer">
-                                <button class="btn btn-outline-dark" type="button"
+                                <button class="btn btn-outline-success" type="button"
                                         data-toggle="modal"
                                         data-id = "{{$room->id}}"
                                         data-target="#abrirmodalArrendarRoom">
                                     Arrendar
                                 </button>
-                                <button class="btn btn-outline-dark" type="button"
+                                <button class="btn btn-outline-success" type="button"
                                     data-target="#abrirmodalEditarRoom"
                                     data-toggle="modal" 
                                     data-id="{{$room->id}}"
@@ -81,16 +81,16 @@
                 </div>
             @else 
                 <div class="col-md-3 mt-4">
-                    <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                    <div class="card text-danger border-danger mb-3" style="max-width: 18rem;">
                     <div class="card-header">{{$room->name}}
                     
                         @if(count($room->rents) == 0)
-                            <button class="btn btn-outline-dark float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
+                            <button disabled class="btn btn-outline-danger float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         @else
 
-                            <button class="btn btn-outline-dark float-right" type="button"
+                            <button disabled class="btn btn-outline-danger float-right" type="button"
                                 data-target="#abrirmodalEditarRoom"
                                 data-toggle="modal" 
                                 data-id="{{$room->id}}"
@@ -107,13 +107,11 @@
                             
                         </div>
                         <div class="card-footer">
-                            <form action="{{route('status',$room->id)}}" method="get">
-                                @csrf
-                                <button class= "btn btn-outline-dark" type="submit">
-                                    Liberar
+
+                                <button disabled class= "btn btn-outline-danger" type="button">
+                                    Arrendar 
                                 </button>
-                            </form>
-                            {{-- <button class="btn btn-outline-dark" type="button"
+                        {{-- <button class="btn btn-outline-dark" type="button"
                                 data-target="#abrirmodalEditarRoom"
                                 data-toggle="modal" 
                                 data-id="{{$room->id}}"

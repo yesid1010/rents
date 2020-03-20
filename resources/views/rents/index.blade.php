@@ -32,6 +32,7 @@
                     <th>Servicios</th>
                     <th>Cancelar Arriendo</th>
                     <th>Detalles</th>
+                    <th>Cerrar Arriendo</th>
                     <th>Imprimir</th>
                 </tr>
             </thead>
@@ -63,33 +64,48 @@
                                 Agregar
                             </button>
                         @else
-                            <button disabled class="btn  btn-dark" type="button">
+                            <button disabled class="btn  btn-outline-dark" type="button">
                                 Agregar
                             </button>
                         @endif
                     </td>
                     <td class="text-center">
                         @if($rent->status == 0 )
-                            <button class="btn btn-primary" type="button"
-                                data-toggle="modal"
-                                data-id = "{{$rent->idRe}}"
-                                data-target="#abrirmodalCancelarArriendo">
-                                Cancelar
+                            <button  class="btn  btn-primary" type="button"
+                                    data-toggle="modal"
+                                    data-id="{{$rent->idRe}}"
+                                    data-total = "{{ number_format($rent->total, 0 ) }}"
+                                    data-target="#abrirmodalAbonarPago">
+                                Pagar
                             </button>
                         @else
-                            <button disabled class="btn  btn-dark" type="button">
+                            <button disabled class="btn  btn-outline-dark" type="button">
                                 Pagado
                             </button>
                         @endif
                     </td>
                     <td class="text-center">
-                        <form action="{{route('rents.show','test')}}" method="get">
+                        <form action="{{route('detailr')}}" method="get">
                             @csrf
                             <input type="hidden" value="{{$rent->idRe}}" name="id">
                             <button class= "btn btn-success" type="submit">
                                 <i class="fa fa-pencil " aria-hidden="true"></i>
                             </button> 
                         </form>
+                    </td>
+                    <td class="text-center">
+                        @if($rent->status == 0 )
+                            <button  class="btn  btn-danger" type="button"
+                                data-toggle="modal"
+                                data-id="{{$rent->idRe}}"
+                                data-target="#abrirmodalCerrarArriendo">
+                                <i class="fa fa-pencil " aria-hidden="true"></i>
+                            </button>
+                        @else 
+                            <button disabled class="btn  btn-outline-dark" type="button">
+                                <i class="fa fa-pencil " aria-hidden="true"></i>
+                            </button>
+                        @endif
                     </td>
                     <td class="text-center">
                       @if($rent->fingerprint != null && $rent->status == 1)  
@@ -164,12 +180,12 @@
 </div>
 <!--Fin del modal agregar Servicio-->
 
- <!--Inicio del modal cancelar Arriendo-->
- <div class="modal fade" id="abrirmodalCancelarArriendo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+ <!--Inicio del modal Abonar pago-->
+ <div class="modal fade" id="abrirmodalAbonarPago" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-primary modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Agregar Pago</h4>
+                <h4 class="modal-title">Agregar Abono  </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -180,6 +196,12 @@
                     
                     {{csrf_field()}}
                     <input type="hidden" name="id" id="id" value=""> 
+                    <div class="form-group row">
+                        <label class="col-md-3 form-control-label" for="text-input">Total Abonar : </label>
+                        <div class="col-md-5">
+                            <input type="number"  name="abono" id="abono"  required class="form-control" >  
+                        </div>
+                    </div>
                      @include('rents.payment')
                 </form>
             </div>
@@ -189,7 +211,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-<!--Fin del modal Cancelar Arriendo-->
+<!--Fin del modal Abonar pago-->
 
  <!--Inicio del modal fingerprint-->
  <div class="modal fade" id="abrirmodalFingerprint" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
@@ -227,4 +249,34 @@
     <!-- /.modal-dialog -->
 </div>
 <!--Fin del modal fingerprint-->
+
+<!--Inicio del modal de eliminar-->
+<div class="modal fade" id="abrirmodalCerrarArriendo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-primary " role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h4 class="modal-title">¿ Está seguro de realizar esta acción?</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <h5>Al dar click en Aceptar, No se podrá deshacer esta acción.</h5>
+                <form action="{{route('cerrararriendo')}}" method="post">
+                    {{csrf_field()}}   
+                    <input type="hidden" name="id" id="id" value="">  
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Aceptar</button> 
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--Fin del modal-->
 @endsection

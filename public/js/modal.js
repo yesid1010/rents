@@ -50,6 +50,34 @@ $('#abrirmodalEliminarService').on('show.bs.modal',function(event){
 
 })
 
+$('#abrirmodalEliminarServicio').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+
+})
+
+$('#abrirmodalEliminarPayment').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+
+})
+
+
+$('#abrirmodalCerrarArriendo').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+
+})
+
 $('#abrirmodalArrendarRoom').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
     var id = button.data('id')
@@ -72,9 +100,24 @@ $('#abrirmodalAgregarServicio').on('show.bs.modal',function(event){
 $('#abrirmodalCancelarArriendo').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
     var id = button.data('id')
- 
+    var total = button.data('total');
+
     var modal = $(this)
     modal.find('.modal-body #id').val(id);
+    modal.find('.modal-body #total').val(total);
+
+})
+
+$('#abrirmodalAbonarPago').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var id = button.data('id')
+    var total = button.data('total');
+
+    var modal = $(this)
+    modal.find('.modal-body #id').val(id);
+    modal.find('.modal-body #total').val(total);
+
+    console.log(total);
 
 })
 
@@ -86,6 +129,19 @@ $('#abrirmodalFingerprint').on('show.bs.modal',function(event){
     modal.find('.modal-body #id').val(id);
 
 })
+
+$('#abrirmodaldetalle').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var date_modal = button.data('date')
+    var description_modal = button.data('description')
+
+    var modal = $(this)
+
+    modal.find('.modal-body #date').val(date_modal);
+    modal.find('.modal-body #description').val(description_modal);
+
+})
+
 
 
 $(".alert").fadeOut(4000 );

@@ -21,7 +21,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     {{-- select piker --}}
     <link rel="stylesheet" href="vendors/css/picker.min.css">
 
@@ -108,6 +109,7 @@
    
     <!-- scripts -->
             <!-- Bootstrap and necessary plugins -->
+            @include('sweet::alert')
             <script src="vendors/js/jquery.min.js"></script>
             <script src="vendors/js/popper.min.js"></script>
             <script src="vendors/js/bootstrap.min.js"></script>

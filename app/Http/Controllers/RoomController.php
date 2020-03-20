@@ -28,8 +28,9 @@ class RoomController extends Controller
         $room->price = $request->price;
 
         $room->save();
-
-        return back()->with('mensaje', '!! Habitación creada con exito !!');
+        alert()->success('OK', '!! Habitación agregada con exito!!');
+        return back();
+        
     }
 
 
@@ -42,20 +43,17 @@ class RoomController extends Controller
         $room->description = $request->description;
 
         $room->save();
-        return back()->with('mensaje', '!! Habitación Editada con exito !!');
+        alert()->success('OK', '!! Habitación Editada con exito!!');
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Room  $room
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Request $request )
     {
         $room =  Room::findOrFail($request->id);
         $room->delete();
-        return back()->with('mensaje', '!! Habitación eliminada con exito !!');
+        alert()->success('OK', '!! Habitación Eliminada con exito!!');
+        return back();  
     }
 
 
