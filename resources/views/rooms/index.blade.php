@@ -10,16 +10,6 @@
             </button>
         </div>
     
-
-        @if (session('mensaje'))
-            <div class="alert alert-success">
-                {{ session('mensaje') }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-        @endif
-
         {{-- manejo de errores de campos --}}
         @if(count($errors))
 
@@ -33,6 +23,11 @@
         @endif
         {{-- fin manejo de errores de campos --}}
     <div class="card-body row py-2">
+        @if(count($rooms)==0)
+
+        <h3 class="text-center col-md-10">No hay habitaciónes guardadas </h3>
+
+        @endif
         @foreach ($rooms as $room)
             
         

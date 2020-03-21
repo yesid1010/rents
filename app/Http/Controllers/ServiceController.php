@@ -9,11 +9,7 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $services = Service::orderBy('id','desc')->get();
@@ -29,12 +25,10 @@ class ServiceController extends Controller
         $service->description = $request->description;
 
         $service->save();
+        alert()->success('Ok', '!! Servicio creado con exito !!');
 
-        return back()->with('mensajeok', '!! Servicio creado con exito !!');
+        return back();
     }
-
-
-
 
     public function update(Request $request)
     {
@@ -45,22 +39,19 @@ class ServiceController extends Controller
         $service->description = $request->description;
 
         $service->save();
-        return back()->with('mensajeok', '!! Servicio Editado con exito !!');
+        alert()->success('Ok', '!! Servicio Editado con exito !!');
+        return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Service  $service
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request)
     {
         $service =  Service::findOrFail($request->id);
         $service->delete();
-        return back()->with('mensajeok', '!! Servicio eliminado con exito !!');
+        alert()->success('Ok', '!! Servicio Eliminado con exito !!');
+        return back();
     }
 
+    // Eliminar un servicio de un arriendo en especifico
     public function deleteService(Request $request){
         $rent_service =  Rent_Service::findOrFail($request->id);
         $rent = Rent::findOrFail($rent_service->rent_id);
@@ -69,7 +60,7 @@ class ServiceController extends Controller
 
         $rent->save();
         $rent_service->delete();
-
-        return back()->with('mensajeok', '!! Servicio eliminado con exito !!');
+        alert()->success('Ok', '!! Servicio Eliminado con exito !!');
+        return back();
     }
 }

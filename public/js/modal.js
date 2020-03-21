@@ -144,4 +144,5 @@ $('#abrirmodaldetalle').on('show.bs.modal',function(event){
 
 
 
+
 $(".alert").fadeOut(4000 );

@@ -11,15 +11,6 @@
         </div>
     </div>
 
-    @if (session('mensajeok'))
-        <div class="alert alert-success">
-            {{ session('mensajeok') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-
     <div class="card-body">
         <table id="tablaServicios" class="table table-bordered table-striped">
             <thead class="bg-primary">

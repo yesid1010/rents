@@ -40,6 +40,7 @@ class RentController extends Controller
                              'rents.total as total',
                              'rooms.id as idR','users.id as idU',
                              'rents.id as idRe')
+                             ->where('rents.status','=','0')
                              ->orderBy('idRe', 'desc')
                              ->get();
 
@@ -61,7 +62,7 @@ class RentController extends Controller
 
         $this->createRent($user,$request);
         
-        return back();  
+        return redirect('/rents');  
     }
 // metodo para crear un arriendo con un huesped que ya se encuentra registrado en el sistema
     public function save(Request $request){
@@ -69,7 +70,7 @@ class RentController extends Controller
         $user = User::findOrFail($request->user_id);
         $this->createRent($user,$request);
 
-        return back();
+        return redirect('/rents');
     }
 
 // metodo llamado para crear un arriendo
@@ -91,6 +92,7 @@ class RentController extends Controller
 
         $rent->save();
 
+        alert()->success('Ok','Arriendo creado correctamente');
         return back();
 
     }
@@ -113,7 +115,7 @@ class RentController extends Controller
 
         $rent->save();
         $rent_service->save();
-
+        alert()->success('Ok', '!! Servicio Agregado con exito !!');
         return back();
     }
 
@@ -134,6 +136,7 @@ class RentController extends Controller
 // metodo para mostrar toda la información relacionada de un arriendo
 //('usuario','habitacion','servicios','detalle del arriendo') 
     public function Detail(Request $request)
+
     {
 
         $payments = $this->payments($request->id);
