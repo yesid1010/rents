@@ -7,11 +7,8 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+// metodo para mostrar todas las habitaciones guardadas en la bd
     public function index()
     {
         $rooms = Room::orderBy('name','asc')->get();
@@ -19,7 +16,7 @@ class RoomController extends Controller
         return view('rooms.index',['rooms'=>$rooms]);
     }
 
-  
+// metodo para guardar una habitación en la bd
     public function store(Request $request)
     {
         $room = new Room();
@@ -33,7 +30,7 @@ class RoomController extends Controller
         
     }
 
-
+// metodo para Editar una habitación en la bd
     public function update(Request $request)
     {
         $room = Room::findOrFail($request->id);
@@ -47,7 +44,7 @@ class RoomController extends Controller
         return back();
     }
 
-
+// metodo para Eliminar una habitación en la bd
     public function destroy(Request $request )
     {
         $room =  Room::findOrFail($request->id);
@@ -56,11 +53,13 @@ class RoomController extends Controller
         return back();  
     }
 
-
+// // metodo para cambiar el estado de  una habitación en la bd
     public function Status($id){
         $room          = Room::findOrFail($id);
         $room->status  = '0';
         $room->save();
         return back();
     }
+
+    
 }
