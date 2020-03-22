@@ -48,6 +48,9 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('detailrent','RentController@Detail')->name('detailr');
 
+    Route::get('detailrents','RentController@DetailRent')->name('detailroom');
+
+
     Route::resource('rooms', 'RoomController');
     Route::resource('rents', 'RentController');
     Route::resource('services', 'ServiceController');

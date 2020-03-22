@@ -120,21 +120,6 @@ class RentController extends Controller
         return back();
     }
 
-// metodo para cambiar el estado de un arriendo (' 1 = pagado',' 0 = pendiente')
-    public function State($id){
-        $rent = Rent::findOrFail($id);
-
-        if($rent->status == '0'){
-            $rent->status = '1';
-        }else{
-            $rent->status = '0';  
-        }
-        
-        $rent->save();
-        return back();
-    }
-
-    
 // metodo para mostrar toda la información relacionada de un arriendo
 //('usuario','habitacion','servicios','detalle del arriendo') 
     public function Detail(Request $request){
@@ -167,6 +152,40 @@ class RentController extends Controller
 
     }
 
+
+    public function DetailRent(Request $request){
+       $room = Room::findOrFail($request->id);
+       $rent = Rent::where('room_id','=',$room->id)->first();
+       
+        // usuario del arriendo
+        $user = $this->User($rent->id);
+
+        //habitacion del arriendo
+        $room = $this->Room($rent->id); 
+        
+        // datos del arriendo
+        $Rent = $this->Rent($rent->id);
+
+        // servicios adicionales del arriendo
+        $services = $this->Services($rent->id);
+
+        // pagos  del arriendo
+        $payments = $this->payments($rent->id);
+
+        // total del arriendo
+        $total = $this->total($rent->id);
+
+        return view('rents.show',['user'=>$user,
+                                'room'=>$room,
+                                'rent'=>$Rent,
+                                'services'=>$services,
+                                'abonos'=>$payments,
+                                'total'=>$total,
+                    ]);
+
+
+    }
+
 // metodo para agregar un numero de huela a un arriendo
     public function fingerprint(Request $request){
         $rent = Rent::findOrFail($request->id);
@@ -182,19 +201,43 @@ class RentController extends Controller
 // metodo para cerrar un arriendo ya pagado
     public function CloseRent(Request $request){
 
-        // 1 pagado 0 pendiente
         $rent = Rent::findOrFail($request->id);
-        $rent->status = '1';
-        $rent->save();
+        
+        if($rent->fingerprint == ''){
+            alert()->error('Error','Por favor agregar huella al arriendo')->autoclose(5000);
+            return back();
+        }
 
-        // liberamos la habitación asociada a ese arriendo
-        // 1 ocupada 0 libre
-        $room = Room::findOrFail($rent->room_id);
-        $room->status = '0';
-        $room->save();
+        $payments =  $this->payments($request->id);
 
-        alert()->success('Ok',' !! Arriendo Cerrado con Exito !!');
-        return back();
+        $totalPayments = 0;
+        foreach ($payments as $payment) {
+            $totalPayments = $totalPayments + $payment->total;
+        }
+
+        $totalRent = $this->total($request->id);
+
+        if($totalRent > $totalPayments){
+            alert()->error('Error','Aún no se han completado los pagos')->autoclose(5000);
+            return back();
+
+        }else{
+        
+            // 1 pagado 0 pendiente
+            
+            $rent->status = '1';
+            $rent->save();
+
+            // liberamos la habitación asociada a ese arriendo
+            // 1 ocupada 0 libre
+            $room = Room::findOrFail($rent->room_id);
+            $room->status = '0';
+            $room->save();
+
+            alert()->success('Ok',' !! Arriendo Cerrado con Exito !!');
+            return back();
+        }
+
 
     }
 
@@ -281,5 +324,21 @@ class RentController extends Controller
         }
         return $total + $rent->habPrice;
     }
+
+    
+// metodo para cambiar el estado de un arriendo (' 1 = pagado',' 0 = pendiente')
+public function State($id){
+    $rent = Rent::findOrFail($id);
+
+    if($rent->status == '0'){
+        $rent->status = '1';
+    }else{
+        $rent->status = '0';  
+    }
+    
+    $rent->save();
+    return back();
+}
+
 
 }

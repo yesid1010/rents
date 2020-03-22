@@ -85,22 +85,27 @@
                         <div class=" row">
                             <label class="col-md-5 form-control-label" for="unity">{{$service->nameService}}</label>
                             <label class="col-md-4 form-control-label" for="unity"> {{number_format($service->priceService, 0 )}}</label> 
-                            <button class="btn btn-outline-dark  col-md-1 mx-1 mb-1" type="button"
-                                    data-target= "#abrirmodaldetalle"
-                                    data-toggle = "modal"
-                                    data-date = "{{$service->created_at}}"
-                                    data-description = "{{$service->description}} "
-                                    >
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </button>
-                            <button class="btn btn-outline-danger  col-md-1  mb-1" type="button"
-                                    data-id="{{$service->id}}"
-                                    data-target= "#abrirmodalEliminarServicio"
-                                    data-toggle = "modal"
-                                    >
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
+
+                            
+                                <button class="btn btn-outline-dark  col-md-1 mx-1 mb-1" type="button"
+                                        data-target= "#abrirmodaldetalle"
+                                        data-toggle = "modal"
+                                        data-date = "{{$service->created_at}}"
+                                        data-description = "{{$service->description}} "
+                                        >
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                            @if($rent->statusRent == 0)
+                                <button class="btn btn-outline-danger  col-md-1  mb-1" type="button"
+                                        data-id="{{$service->id}}"
+                                        data-target= "#abrirmodalEliminarServicio"
+                                        data-toggle = "modal"
+                                        >
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </button>
+                           @endif         
                         </div>
+
                     @endforeach
                     <hr>
                     <div class=" row">
@@ -121,13 +126,15 @@
                                 >
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button> 
-                            <button class="btn btn-outline-danger  col-md-1  mb-1" type="button"
-                                data-target= "#abrirmodalEliminarPayment"
-                                data-toggle = "modal"
-                                data-id  = "{{$abono->id}}"
-                                >
-                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>                       
+                            @if($rent->statusRent == 0)
+                                <button class="btn btn-outline-danger  col-md-1  mb-1" type="button"
+                                    data-target= "#abrirmodalEliminarPayment"
+                                    data-toggle = "modal"
+                                    data-id  = "{{$abono->id}}"
+                                    >
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </button> 
+                            @endif                      
                         </div>
                     @endforeach
                     <hr>

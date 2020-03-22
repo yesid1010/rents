@@ -102,10 +102,17 @@
                             
                         </div>
                         <div class="card-footer">
-
-                                <button disabled class= "btn btn-outline-danger" type="button">
-                                    Arrendar 
-                                </button>
+                            <form action="{{route('detailroom')}}" method="get">
+                                @csrf
+                                <input type="hidden" value="{{$room->id}}" name="id">
+                                <button class= "btn btn-outline-danger" type="submit">
+                                    <i class="fa fa-pencil " aria-hidden="true"></i> 
+                                    Información
+                                </button> 
+                            </form>
+                                {{-- <button disabled class= "btn btn-outline-danger" type="button">
+                                    Arrendar z
+                                </button> --}}
                         {{-- <button class="btn btn-outline-dark" type="button"
                                 data-target="#abrirmodalEditarRoom"
                                 data-toggle="modal" 

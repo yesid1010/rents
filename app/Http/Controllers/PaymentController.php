@@ -36,10 +36,10 @@ class PaymentController extends Controller
         $payment->type          = $request->type;
         $payment->total         = $request->abono;
         $payment->save();
-        $this->abonar($request->id,$payment->total);
-        
-       // $payment->total = $total;
 
+        $this->abonar($payment->rent_id,$request->abono);
+        
+        alert()->success('Ok','!! Pago generado satisfactoriamente !!');
         return back();
 
     }
@@ -163,7 +163,8 @@ class PaymentController extends Controller
 
         $rent->save();
         $payment->delete();
-
-        return back()->with('mensajeok', '!! abono eliminado con exito !!');
+        
+        alert()->success('Ok','!! Abono eliminado con exito !!');
+        return back();
     }
 }
