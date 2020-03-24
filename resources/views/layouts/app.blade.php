@@ -49,9 +49,36 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         @if(Auth::check())
-                            <li class="nav-item navbar-brand">
-                                <a class="nav-link" href="{{ route('rents.index') }}">{{ __('Arrriendos') }}</a>
+                            <li	class="nav-item	dropdown navbar-brand ">
+                                <a	class="nav-link	dropdown-toggle"
+                                    data-toggle="dropdown"
+                                    href="#"
+                                    role="button"
+                                    aria-haspopup="true"	
+                                    aria-expanded="false">Arriendos
+                                </a>
+                                <div class="dropdown-menu">
+                                    <form action="{{route('rents.index')}}" method="get">
+                                        @csrf
+                                        <input type="hidden" value="0" name="id">
+                                        <input type="hidden" value="true" name="ab">
+                                        <button class= "btn btn-ligth" type="submit">
+                                            <i class="fa fa-pencil " aria-hidden="true"></i>
+                                            Abiertos
+                                        </button> 
+                                    </form>
+                                    <form action="{{route('rents.index')}}" method="get">
+                                        @csrf
+                                        <input type="hidden" value="1" name="id">
+                                        <input type="hidden" value="false" name="ab">
+                                        <button class= "btn btn-ligth" type="submit">
+                                            <i class="fa fa-pencil " aria-hidden="true"></i>
+                                            Cerrados
+                                        </button> 
+                                    </form>
+                                </div>
                             </li>
+
                             <li class="nav-item navbar-brand">
                                 <a class="nav-link" href="{{ route('services.index') }}">{{ __('Servicios') }}</a>
                             {{-- </li>
@@ -61,7 +88,7 @@
                             <li class="nav-item navbar-brand">
                                 <a class="nav-link" href="{{ route('users.index') }}">{{ __('Clientes') }}</a>
                             </li>
-  
+
                         @endif
                     </ul>
 
@@ -111,6 +138,7 @@
             @include('sweet::alert')
             <script src="vendors/js/jquery.min.js"></script>
             <script src="vendors/js/popper.min.js"></script>
+            <script src="vendors/js/bootstrap.bundle.min.js"></script>
             <script src="vendors/js/bootstrap.min.js"></script>
             <script src="vendors/js/pace.min.js"></script>
             <!-- Plugins and scripts required by all views -->

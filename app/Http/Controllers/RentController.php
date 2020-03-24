@@ -16,38 +16,24 @@ class RentController extends Controller
 {
 
 // metodo para mostrar todos los arriendos agregados a la bd
-    public function index()
+    public function index(Request $request)
     {   
-        $rents = DB::table('rents')
-                    ->join('users','users.id','=','rents.user_id')
-                    ->join('rooms','rooms.id','=','rents.room_id')
-                    ->select('users.identification as identification',
-                             'users.name as nameU',
-                             'users.telephone as telephone',
-                             'users.family_telephone as family_telephone',
-                             'users.email as email',
-                             'rooms.name as nameR',
-                             'rooms.description as descriptionR',
-                             'rooms.price as priceR',
-                             'rents.description as descriptionRe',
-                             'rents.fingerprint as fingerprint',
-                             'rents.startdate as startdate',
-                             'rents.endingdate as endingdate',
-                             'rents.status as status',
-                             'rents.total as total',
-                             'rooms.id as idR','users.id as idU',
-                             'rents.id as idRe')
-                             //->where('rents.status','=','0')
-                             ->orderBy('idRe', 'desc')
-                             ->get();
+        $abierto = false;
 
+        if($request->ab == 'true'){
+            $abierto = true;
+        }
+
+        $rents = $this->rents($request->id);
+        
         $services = Service::all();  
         $users = User::where('rol','1')->get();
         $rooms = Room::where('status','0')->get();
         return view('rents.index',['rents'=>$rents,
                                     'services'=>$services,
                                     'users'=>$users,
-                                    'rooms'=>$rooms]);
+                                    'rooms'=>$rooms,
+                                    'abierto'=>$abierto]);
     }
 
  // metodo para  crear un arriendo con un huesped que no esta guardado en el sistema
@@ -340,5 +326,29 @@ public function State($id){
     return back();
 }
 
+public function rents($id){
+  return   $rents =  DB::table('rents')
+    ->join('users','users.id','=','rents.user_id')
+    ->join('rooms','rooms.id','=','rents.room_id')
+    ->select('users.identification as identification',
+             'users.name as nameU',
+             'users.telephone as telephone',
+             'users.family_telephone as family_telephone',
+             'users.email as email',
+             'rooms.name as nameR',
+             'rooms.description as descriptionR',
+             'rooms.price as priceR',
+             'rents.description as descriptionRe',
+             'rents.fingerprint as fingerprint',
+             'rents.startdate as startdate',
+             'rents.endingdate as endingdate',
+             'rents.status as status',
+             'rents.total as total',
+             'rooms.id as idR','users.id as idU',
+             'rents.id as idRe')
+             ->where('rents.status','=',$id)
+             ->orderBy('idRe', 'desc')
+             ->get();
+}
 
 }

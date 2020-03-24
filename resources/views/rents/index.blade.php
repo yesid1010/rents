@@ -20,7 +20,12 @@
         </div>
     @endif
 
-    @include('rents.types.tab')
+    @if ($abierto)
+        @include('rents.types.abiertos')
+    @else
+        @include('rents.types.cerrados')
+    @endif
+   
 
 
 
