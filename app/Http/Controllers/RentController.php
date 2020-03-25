@@ -141,25 +141,30 @@ class RentController extends Controller
 
     public function DetailRent(Request $request){
        $room = Room::findOrFail($request->id);
-       $rent = Rent::where('room_id','=',$room->id)->first();
+       $rent = DB::table('rents')
+                   ->where('room_id','=',$room->id)
+                   ->where('status','=','0')
+                   ->get();
+        
+       // Rent::where('room_id','=',$room->id)->first();
        
         // usuario del arriendo
-        $user = $this->User($rent->id);
+        $user = $this->User($rent[0]->id);
 
         //habitacion del arriendo
-        $room = $this->Room($rent->id); 
+        $room = $this->Room($rent[0]->id); 
         
         // datos del arriendo
-        $Rent = $this->Rent($rent->id);
+        $Rent = $this->Rent($rent[0]->id);
 
         // servicios adicionales del arriendo
-        $services = $this->Services($rent->id);
+        $services = $this->Services($rent[0]->id);
 
         // pagos  del arriendo
-        $payments = $this->payments($rent->id);
+        $payments = $this->payments($rent[0]->id);
 
         // total del arriendo
-        $total = $this->total($rent->id);
+        $total = $this->total($rent[0]->id);
 
         return view('rents.show',['user'=>$user,
                                 'room'=>$room,
