@@ -12,6 +12,7 @@
                     <th>telefono</th>
                     <th>telefono familiar</th>
                     <th>correo</th>  
+                    <th>Historial</th>
                 </tr>
             </thead>
 
@@ -22,6 +23,15 @@
                 <td>{{$user->telephone}}</td>
                 <td>{{$user->family_telephone}}</td>
                 <td>{{$user->email}}</td>
+                <td class="text-center">
+                    <form action="{{route('rentus')}}" method="get">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$user->id}}">
+                        <button class= "btn btn-warning" type="submit">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button> 
+                    </form>
+                </td>
                 </tr>
             @endforeach
         </table>
