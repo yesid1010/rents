@@ -13,7 +13,7 @@
 <div class="form-group row">
     <label class="col-md-3 form-control-label" for="des">Descripción</label>
     <div class="col-md-9">
-    <textarea required name="description" id="description" rows ="2" class="form-control" placeholder="Ingrese descripcion"></textarea>
+    <textarea  name="description" id="description" rows ="2" class="form-control" placeholder="Ingrese descripcion"></textarea>
 </div>
 </div>
 

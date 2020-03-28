@@ -28,5 +28,9 @@
     
 </div>
 
-@include('rents.modals.modal')
+@include('rents.modals.fingerprint')
+@include('rents.modals.addRent')
+@include('rents.modals.closeRent')
+@include('rents.modals.payment')
+@include('rents.modals.services')
 @endsection

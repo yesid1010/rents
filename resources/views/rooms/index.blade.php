@@ -30,27 +30,32 @@
         @endif
         @foreach ($rooms as $room)
             
-        
+        {{-- Si la habitacion no está arrendada --}}
             @if($room->status == 0)
                 <div class="col-md-3 mt-4">
                     <div class="card text-success border-success mb-3" style="max-width: 18rem;">
-                        <div class="card-header">{{$room->name}}
-                        @if(count($room->rents) == 0)
-                            <button class="btn btn-outline-success float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
-                        @else
+                        <div class="card-header">
 
-                            <button class="btn btn-outline-success float-right" type="button"
-                                data-target="#abrirmodalEditarRoom"
-                                data-toggle="modal" 
-                                data-id="{{$room->id}}"
-                                data-name="{{$room->name}}"
-                                data-price="{{$room->price}}"
-                                data-description="{{$room->description}}">  
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </button>
-                        @endif
+                            <div class="row">
+                                <div class="col-md-6">{{$room->name}}</div>
+                                <div class="col-md-6">
+                                    {{-- Si la habitacion no ha sido arrendada por primera vez --}} 
+                                    @if(count($room->rents) == 0) 
+                                        <button class="btn btn-outline-success float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                        </button>
+                                    @else
+                                        <form action="{{route('rentsroom')}}" method="get">
+                                            @csrf
+                                            <input type="hidden" name="id" value="{{$room->id}}">
+                                            <button class= " btn btn-outline-success float-right" type="submit">
+                                            Historial
+                                            </button> 
+                                        </form>
+                                    @endif
+                                </div>
+    
+                            </div>
                         </div>
                             <div class="card-body">
                                 <h5 class="card-title">Precio: {{ number_format($room->price, 0 ) }}</h5>        
@@ -74,28 +79,33 @@
                             </div>
                     </div>
                 </div>
+         {{-- Si la habitacion  está arrendada --}}
             @else 
                 <div class="col-md-3 mt-4">
                     <div class="card text-danger border-danger mb-3" style="max-width: 18rem;">
-                    <div class="card-header">{{$room->name}}
-                    
-                        @if(count($room->rents) == 0)
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6">{{$room->name}}</div>
+                            <div class="col-md-6">
+                                <form action="{{route('rentsroom')}}" method="get">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$room->id}}">
+                                    <button class= " btn btn-outline-danger float-right" type="submit">
+                                       Historial
+                                    </button> 
+                                </form>
+                            </div>
+
+                        </div>
+                        {{-- @if(count($room->rents) == 0)
                             <button disabled class="btn btn-outline-danger float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
                                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
-                        @else
+                        @else --}}
 
-                            <button disabled class="btn btn-outline-danger float-right" type="button"
-                                data-target="#abrirmodalEditarRoom"
-                                data-toggle="modal" 
-                                data-id="{{$room->id}}"
-                                data-name="{{$room->name}}"
-                                data-price="{{$room->price}}"
-                                data-description="{{$room->description}}">  
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </button>
-                        @endif
+                        {{-- @endif --}}
                     </div>
+                    
 
                         <div class="card-body">
                             <h5 class="card-title">Precio: {{ number_format($room->price, 0 ) }}</h5>

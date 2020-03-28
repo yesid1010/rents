@@ -6,6 +6,7 @@ use App\Http\Requests\UserCreateRequest;
 use Illuminate\Http\Request;
 use App\User;
 use App\Rent;
+use App\Service;
 use Illuminate\Support\Facades\DB;
 class UserController extends Controller
 {
@@ -34,8 +35,9 @@ class UserController extends Controller
 
        
          $rents = $this->rents_U($request->id);
+         $services = Service::all(); 
         //$user = User::where('id',$id)->first();
-        return view('users.rents.index',['rents'=>$rents]);
+        return view('users.rents.index',['rents'=>$rents,'services'=>$services]);
     }
 
     public function rents_U($id){

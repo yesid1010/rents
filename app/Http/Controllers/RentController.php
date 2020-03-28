@@ -46,7 +46,7 @@ class RentController extends Controller
         //pasamos el usuario creado y los parametros del formulario al método createRent
         $this->createRent($user,$request);
         
-        return redirect('/rents');  
+        return redirect('/rooms');  
     }
 
 // metodo para crear un arriendo con un huesped que ya se encuentra registrado en el sistema
@@ -56,7 +56,7 @@ class RentController extends Controller
         $user = User::findOrFail($request->user_id);
         $this->createRent($user,$request);
 
-        return redirect('/rents');
+        return redirect('/rooms');
     }
 
 // metodo llamado para crear un arriendo
