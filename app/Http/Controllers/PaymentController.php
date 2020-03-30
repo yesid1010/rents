@@ -105,7 +105,9 @@ class PaymentController extends Controller
         ->select('rents.startdate as startdate',
                  'rents.endingdate as endingdate',
                  'rents.fingerprint as fingerprint',
-                 'rents.status as statusRent')
+                 'rents.status as statusRent',
+                 'rents.habPrice as habPrice',
+                 'rents.total as total')
         ->where('rents.id','=',$id)
         ->first();
 
@@ -126,13 +128,18 @@ class PaymentController extends Controller
     }
 
     // metodo que devuelve el pago asociado a un arriendo
-    public function payment($id){
-        $payment = DB::table('rents')
-                    ->join('payments','payments.rent_id','=','rents.id')
-                    ->where('rents.id','=',$id)
-                    ->first();
-
-        return $payment;
+    // metodo para traer los pagos de un arriendo
+    public function payments($id){
+        $payments    = DB::table('payments')
+                            ->select('payments.description as description',
+                            'payments.id as id',
+                            'payments.type as type',
+                            'payments.total as total',
+                            'payments.created_at as created_at',
+                            'payments.updated_at as updated_at')
+                            ->where('payments.rent_id','=',$id)
+                            ->get();
+        return $payments;
     }
 
     public function pdf($id){
@@ -141,10 +148,10 @@ class PaymentController extends Controller
         $huesped    = $this->user($id);
         $rent       = $this->rent($id);
         $services   = $this->services($id);
-        $payment    = $this->payment($id);
+        $payments    = $this->payments($id);
         $rent_      = Rent::findOrFail($id);
 
-        $pdf = \PDF::loadView('pdf.rent',['payment'=>$payment,
+        $pdf = \PDF::loadView('pdf.rent',['payments'=>$payments,
                                           'empleado'=>$user,
                                           'room'=>$room,
                                           'huesped'=>$huesped,

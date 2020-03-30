@@ -27,7 +27,7 @@
                     <form action="{{route('rentus')}}" method="get">
                         @csrf
                         <input type="hidden" name="id" value="{{$user->id}}">
-                        <button class= "btn btn-warning" type="submit">
+                        <button class= "btn btn-primary" type="submit">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                         </button> 
                     </form>

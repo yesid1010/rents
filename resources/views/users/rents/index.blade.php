@@ -10,8 +10,5 @@
     @include('rents.types.abiertos')
 </div>
 
-@include('rents.modals.fingerprint')
-@include('rents.modals.closeRent')
-@include('rents.modals.services')
-@include('rents.modals.payment')
+@include('rents.modals.index')
 @endsection

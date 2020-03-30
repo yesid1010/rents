@@ -84,7 +84,7 @@
                     @endif
                 </td>
                 <td class="text-center">
-                  @if($rent->fingerprint != null && $rent->status == 1)  
+                  @if($rent->fingerprint != null )  
                     <form target="_blank" action="{{route('pdf',$rent->idRe)}}" method="get">
                         
                         <button class= "btn btn-danger" type="submit">

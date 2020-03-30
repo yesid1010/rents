@@ -11,15 +11,6 @@
         </div>
     </div>
 
-    @if (session('mensajeok'))
-        <div class="alert alert-success">
-            {{ session('mensajeok') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-    @endif
-
     @if ($abierto)
         @include('rents.types.abiertos')
     @else
@@ -28,9 +19,8 @@
     
 </div>
 
-@include('rents.modals.fingerprint')
+{{-- modales --}}
+@include('rents.modals.index')
 @include('rents.modals.addRent')
-@include('rents.modals.closeRent')
-@include('rents.modals.payment')
-@include('rents.modals.services')
+
 @endsection
