@@ -92,7 +92,7 @@ class RoomController extends Controller
                  'rents.total as total',
                  'rooms.id as idR','users.id as idU',
                  'rents.id as idRe')
-                 ->where('rents.user_id','=',$id)
+                 ->where('rents.room_id','=',$id)
                  ->orderBy('idRe', 'desc')
                  ->get();
      }

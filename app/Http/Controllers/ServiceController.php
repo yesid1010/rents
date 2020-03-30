@@ -46,6 +46,7 @@ class ServiceController extends Controller
     public function destroy(Request $request)
     {
         $service =  Service::findOrFail($request->id);
+        
         $service->delete();
         alert()->success('Ok', '!! Servicio Eliminado con exito !!');
         return back();

@@ -28,7 +28,7 @@
                         @csrf
                         <input type="hidden" name="id" value="{{$user->id}}">
                         <button class= "btn btn-primary" type="submit">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                         </button> 
                     </form>
                 </td>

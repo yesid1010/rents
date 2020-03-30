@@ -15,19 +15,19 @@
         <table id="tablaServicios" class="table table-bordered table-striped">
             <thead class="bg-primary">
                 <tr>
-                    <th>Nombre</th>
-                    <th>precio</th>
-                    <th>Descripción</th>
-                    <th>Editar</th>  
-                    <th>Eliminar</th> 
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">precio</th>
+                    <th class="text-center">Descripción</th>
+                    <th class="text-center">Editar</th>  
+                    <th class="text-center">Eliminar</th> 
                 </tr>
             </thead>
 
             @foreach ($services as $service)
                 <tr>
-                <td>{{$service->name}}</td>
-                <td>{{$service->price}}</td>
-                <td>{{$service->description}}</td>
+                <td class="text-center">{{$service->name}}</td>
+                <td class="text-center">{{$service->price}}</td>
+                <td class="text-center">{{$service->description}}</td>
                 <td class="text-center"> <button class="btn btn-primary" type="button"
                         data-target="#abrirmodalEditarService"
                         data-toggle="modal" 
@@ -35,13 +35,20 @@
                         data-name="{{$service->name}}"
                         data-price="{{$service->price}}"
                         data-description="{{$service->description}}">  
-                        Editar
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        
                     </button>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-danger " data-id="{{$service->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarService">
+                    @if (count($service->rents) > 0)
+                        <button disabled class="btn btn-secondary " type="button">
                             <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    </button>
+                        </button>
+                    @else
+                        <button class="btn btn-danger " data-id="{{$service->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarService">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        </button>
+                    @endif
                 </td>
                 </tr>
             @endforeach

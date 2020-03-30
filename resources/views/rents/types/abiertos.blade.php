@@ -47,12 +47,12 @@
                 </td>
                 <td class="text-center">
                     @if($rent->status == 0 )
-                        <button  class="btn  btn-primary" type="button"
+                        <button  class="btn  btn-success" type="button"
                                 data-toggle="modal"
                                 data-id="{{$rent->idRe}}"
                                 data-total = "{{ number_format($rent->total, 0 ) }}"
                                 data-target="#abrirmodalAbonarPago">
-                            Pagar
+                                <i class="fa fa-money" aria-hidden="true"></i>
                         </button>
                     @else
                         <button disabled class="btn  btn-outline-dark" type="button">
@@ -64,7 +64,7 @@
                     <form action="{{route('detailr')}}" method="get">
                         @csrf
                         <input type="hidden" value="{{$rent->idRe}}" name="id">
-                        <button class= "btn btn-success" type="submit">
+                        <button class= "btn btn-primary" type="submit">
                             <i class="fa fa-pencil " aria-hidden="true"></i>
                         </button> 
                     </form>

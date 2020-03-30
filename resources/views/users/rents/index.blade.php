@@ -4,7 +4,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">     
-            <h3 class="float-left">Historial de Arriendos</h3>       
+            <h3 class="float-left">Historial de Arriendos por usuario</h3>       
         </div>
     </div>
     @include('rents.types.abiertos')
