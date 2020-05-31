@@ -11,7 +11,7 @@
             </div>
             
             <div class="modal-body">
-                <form action="{{route('save')}}" method="post" class="form-horizontal">
+                <form action="{{route('save')}}" method="post" onsubmit="return checkSubmit();"  class="form-horizontal">
                     {{csrf_field()}}
                     @include('rents.form')
                 </form>

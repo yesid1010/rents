@@ -97,13 +97,6 @@
                             </div>
 
                         </div>
-                        {{-- @if(count($room->rents) == 0)
-                            <button disabled class="btn btn-outline-danger float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
-                            </button>
-                        @else --}}
-
-                        {{-- @endif --}}
                     </div>
                     
 
@@ -120,18 +113,6 @@
                                     Información
                                 </button> 
                             </form>
-                                {{-- <button disabled class= "btn btn-outline-danger" type="button">
-                                    Arrendar z
-                                </button> --}}
-                        {{-- <button class="btn btn-outline-dark" type="button"
-                                data-target="#abrirmodalEditarRoom"
-                                data-toggle="modal" 
-                                data-id="{{$room->id}}"
-                                data-name="{{$room->name}}"
-                                data-price="{{$room->price}}"
-                                data-description="{{$room->description}}">  
-                                Detalles
-                            </button> --}}
                            
                         </div>
                       </div>
@@ -155,7 +136,7 @@
             </div>
             
             <div class="modal-body">
-                <form action="{{route('rooms.store')}}" method="post" class="form-horizontal">
+                <form action="{{route('rooms.store')}}" method="post"  onsubmit="return checkSubmit();" class="form-horizontal">
                     {{csrf_field()}}
                     @include('rooms.form')
                 </form>

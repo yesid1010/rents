@@ -132,7 +132,8 @@
             @yield('content')
         </main>
     </div>
-   
+
+
     <!-- scripts -->
             <!-- Bootstrap and necessary plugins -->
             @include('sweet::alert')

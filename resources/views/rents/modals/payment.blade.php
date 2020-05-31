@@ -2,7 +2,7 @@
  <div class="modal fade" id="abrirmodalAbonarPago" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-primary modal-md" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-danger">
                 <h4 class="modal-title">Agregar Abono  </h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
@@ -10,7 +10,7 @@
             </div>
             
             <div class="modal-body">
-                <form action="{{route('payments.store')}}" method="post" class="form-horizontal">
+                <form action="{{route('payments.store')}}" method="post" onsubmit="return checkSubmit();" class="form-horizontal">
                     
                     {{csrf_field()}}
                     <input type="hidden" name="id" id="id" value=""> 

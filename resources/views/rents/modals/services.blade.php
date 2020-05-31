@@ -10,7 +10,7 @@
             </div>
             
             <div class="modal-body">
-                <form action="{{route('addservices')}}" method="post" class="form-horizontal">
+                <form action="{{route('addservices')}}" method="post" class="form-horizontal"  onsubmit="return checkSubmit();">
                     
                     {{csrf_field()}}
                     <input type="hidden" name="id" id="id" value=""> 

@@ -69,7 +69,7 @@
             </div>
             
             <div class="modal-body">
-                <form action="{{route('services.store')}}" method="post" class="form-horizontal">
+                <form action="{{route('services.store')}}" method="post" onsubmit="return checkSubmit();"  class="form-horizontal">
                     {{csrf_field()}}
                     @include('services.form')
                 </form>
@@ -94,7 +94,7 @@
             </div>
             
             <div class="modal-body">
-                <form action="{{route('services.update','test')}}" method="post" class="form-horizontal">
+                <form action="{{route('services.update','test')}}" method="post" onsubmit="return checkSubmit();"  class="form-horizontal">
                     {{method_field('patch')}}
                     {{csrf_field()}}
                     <input type="hidden" name="id" id="id" value="">
@@ -122,7 +122,7 @@
             
             <div class="modal-body">
                 <h5>Al dar click en Aceptar, No se podrá deshacer esta acción.</h5>
-                <form action="{{route('destroyservice')}}" method="post">
+                <form action="{{route('destroyservice')}}" method="post" onsubmit="return checkSubmit();" >
                     {{csrf_field()}}   
                     <input type="hidden" name="id" id="id" value="">  
                     <div class="modal-footer">

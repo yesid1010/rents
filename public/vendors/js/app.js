@@ -54,7 +54,20 @@ $(function () {
     $('#ex-search2').picker({search : true});
     // FIN TABLAS ORDENES //
 
-});
+     enviando = false;
 
+});
+ //Obligaremos a entrar el if en el primer submit
+function checkSubmit() {
+    if (!enviando) {
+        console.log('formulario enviado');
+        enviando = true;
+        return true;
+    } else {
+        //Si llega hasta aca significa que pulsaron 2 veces el boton submit
+        console.log("El formulario ya se esta enviando");
+        return false;
+    }
+}
 
 

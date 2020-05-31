@@ -80,65 +80,72 @@
                         <label class="col-md-6 form-control-label" for="unity"><strong>{{number_format($rent->habPrice, 0 )}}</strong> </label> 
                     </div>
                     <hr>
-                    <label class="form-control-label"><strong>Servicios Adicionales</strong> </label>
-                    @foreach ($services as $service)
-                        <div class=" row">
-                            <label class="col-md-5 form-control-label" for="unity">{{$service->nameService}}</label>
-                            <label class="col-md-4 form-control-label" for="unity"> {{number_format($service->priceService, 0 )}}</label> 
 
-                            
-                                <button class="btn btn-outline-dark  col-md-1 mx-1 mb-1" type="button"
-                                        data-target= "#abrirmodaldetalle"
-                                        data-toggle = "modal"
-                                        data-date = "{{$service->created_at}}"
-                                        data-description = "{{$service->description}} "
-                                        >
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </button>
-                            @if($rent->statusRent == 0)
-                                <button class="btn btn-outline-danger  col-md-1  mb-1" type="button"
-                                        data-id="{{$service->id}}"
-                                        data-target= "#abrirmodalEliminarServicio"
-                                        data-toggle = "modal"
-                                        >
-                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                </button>
-                           @endif         
-                        </div>
+                    @if (count($services)>0)
 
-                    @endforeach
-                    <hr>
+                        <label class="form-control-label"><strong>Servicios Adicionales</strong> </label>
+                        
+                        @foreach ($services as $service)
+                    
+                            <div class=" row">
+                                <label class="col-md-5 form-control-label" for="unity">{{$service->nameService}}</label>
+                                <label class="col-md-4 form-control-label" for="unity"> {{number_format($service->priceService, 0 )}}</label> 
+
+                                
+                                    <button class="btn btn-outline-dark  col-md-1 mx-1 mb-1" type="button"
+                                            data-target= "#abrirmodaldetalle"
+                                            data-toggle = "modal"
+                                            data-date = "{{$service->created_at}}"
+                                            data-description = "{{$service->description}} "
+                                            >
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </button>
+                                @if($rent->statusRent == 0)
+                                    <button class="btn btn-outline-danger  col-md-1  mb-1" type="button"
+                                            data-id="{{$service->id}}"
+                                            data-target= "#abrirmodalEliminarServicio"
+                                            data-toggle = "modal"
+                                            >
+                                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </button>
+                            @endif         
+                            </div>
+
+                        @endforeach
+                        <hr>
+                    @endif
                     <div class=" row">
                         <label class="col-md-5 form-control-label" for="unity"> <strong>Total</strong> </label>
                         <label class="col-md-6 form-control-label" for="unity"><strong> {{number_format($total, 0 )}} </strong></label> 
                     </div>
                     <hr>
-                    <label class="form-control-label"> <strong>Abonos</strong></label>
-                    @foreach ($abonos as $abono)
-                        <div class=" row">
-                            <label class="col-md-5 form-control-label" for="unity">{{$abono->created_at}}</label>
-                            <label class="col-md-4 form-control-label" for="unity">{{number_format($abono->total, 0 )}}</label> 
-                            <button class="btn btn-outline-dark mx-1 col-md-1 mb-1" type="button"
-                                data-target= "#abrirmodaldetalle"
-                                data-toggle = "modal"
-                                data-date = "{{$abono->created_at}}"
-                                data-description = "{{$abono->description}} "
-                                >
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            </button> 
-                            @if($rent->statusRent == 0)
-                                <button class="btn btn-outline-danger  col-md-1  mb-1" type="button"
-                                    data-target= "#abrirmodalEliminarPayment"
+                    @if (count($abonos)>0)
+                        <label class="form-control-label"> <strong>Abonos</strong></label>
+                        @foreach ($abonos as $abono)
+                            <div class=" row">
+                                <label class="col-md-5 form-control-label" for="unity">{{$abono->created_at}}</label>
+                                <label class="col-md-4 form-control-label" for="unity">{{number_format($abono->total, 0 )}}</label> 
+                                <button class="btn btn-outline-dark mx-1 col-md-1 mb-1" type="button"
+                                    data-target= "#abrirmodaldetalle"
                                     data-toggle = "modal"
-                                    data-id  = "{{$abono->id}}"
+                                    data-date = "{{$abono->created_at}}"
+                                    data-description = "{{$abono->description}} "
                                     >
-                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
                                 </button> 
-                            @endif                      
-                        </div>
-                    @endforeach
-                    <hr>
-
+                                @if($rent->statusRent == 0)
+                                    <button class="btn btn-outline-danger  col-md-1  mb-1" type="button"
+                                        data-target= "#abrirmodalEliminarPayment"
+                                        data-toggle = "modal"
+                                        data-id  = "{{$abono->id}}"
+                                        >
+                                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                    </button> 
+                                @endif                      
+                            </div>
+                        @endforeach
+                        <hr>
+                    @endif
                     <div class=" row">
                         <label class="col-md-5 form-control-label" for="unity"><strong>Pendiente</strong></label>
                         <label class="col-md-6 form-control-label" for="unity"><strong>{{number_format($rent->total, 0 )}}</strong></label> 

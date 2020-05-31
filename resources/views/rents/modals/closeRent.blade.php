@@ -12,7 +12,7 @@
             
             <div class="modal-body">
                 <h5>Al dar click en Aceptar, No se podrá deshacer esta acción.</h5>
-                <form action="{{route('cerrararriendo')}}" method="post">
+                <form action="{{route('cerrararriendo')}}"  method="post" onsubmit="return checkSubmit();" >
                     {{csrf_field()}}   
                     <input type="hidden" name="id" id="id" value="">  
                     <div class="modal-footer">

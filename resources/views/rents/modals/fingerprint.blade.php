@@ -11,7 +11,7 @@
             </div>
             
             <div class="modal-body">
-                <form action="{{route('fingerprint')}}" method="post" class="form-horizontal">
+                <form action="{{route('fingerprint')}}" method="post"  onsubmit="return checkSubmit();" class="form-horizontal">
                     
                     {{csrf_field()}}
                     <input type="hidden" name="id" id="id" value=""> 
