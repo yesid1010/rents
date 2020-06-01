@@ -25,31 +25,32 @@
 
             @foreach ($services as $service)
                 <tr>
-                <td class="text-center">{{$service->name}}</td>
-                <td class="text-center">{{$service->price}}</td>
-                <td class="text-center">{{$service->description}}</td>
-                <td class="text-center"> <button class="btn btn-primary" type="button"
-                        data-target="#abrirmodalEditarService"
-                        data-toggle="modal" 
-                        data-id="{{$service->id}}"
-                        data-name="{{$service->name}}"
-                        data-price="{{$service->price}}"
-                        data-description="{{$service->description}}">  
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        
-                    </button>
-                </td>
-                <td class="text-center">
-                    @if (count($service->rents) > 0)
-                        <button disabled class="btn btn-secondary " type="button">
-                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <td class="text-center">{{$service->name}}</td>
+                    <td class="text-center">{{$service->price}}</td>
+                    <td class="text-center">{{$service->description}}</td>
+                    <td class="text-center"> 
+                        <button class="btn btn-primary" type="button"
+                            data-target="#abrirmodalEditarService"
+                            data-toggle="modal" 
+                            data-id="{{$service->id}}"
+                            data-name="{{$service->name}}"
+                            data-price="{{$service->price}}"
+                            data-description="{{$service->description}}">  
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            
                         </button>
-                    @else
-                        <button class="btn btn-danger " data-id="{{$service->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarService">
-                            <i class="fa fa-trash-o" aria-hidden="true"></i>
-                        </button>
-                    @endif
-                </td>
+                    </td>
+                    <td class="text-center">
+                        @if (count($service->rents) > 0)
+                            <button disabled class="btn btn-secondary " type="button">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        @else
+                            <button class="btn btn-danger " data-id="{{$service->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarService">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </button>
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </table>
