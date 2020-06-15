@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('addservice','RentController@AddService')->name('addservices');
 
     Route::post('fingerprints','RentController@fingerprint')->name('fingerprint');
+    Route::post('contracts','RentController@contract')->name('contract');
 
     Route::post('saverent','RentController@save')->name('save');
 

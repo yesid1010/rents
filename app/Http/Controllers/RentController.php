@@ -193,6 +193,19 @@ class RentController extends Controller
         return back();
     }
 
+// metodo para agregar un contracto a un arriendo
+public function contract(Request $request){
+
+    $rent = Rent::findOrFail($request->id);
+
+    if($request->hasFile('file')){
+        $rent->contract = $request->file('file')->store('public/contratos');
+    }
+    
+    $rent->save();
+
+    return back();
+}
 
 // metodo para cerrar un arriendo ya pagado
     public function CloseRent(Request $request){
@@ -355,6 +368,7 @@ public function rents($id){
              'rents.endingdate as endingdate',
              'rents.status as status',
              'rents.total as total',
+             'rents.contract as contract',
              'rooms.id as idR','users.id as idU',
              'rents.id as idRe')
              ->where('rents.status','=',$id)

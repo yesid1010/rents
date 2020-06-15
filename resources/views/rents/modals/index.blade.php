@@ -2,3 +2,4 @@
 @include('rents.modals.closeRent')
 @include('rents.modals.payment')
 @include('rents.modals.services')
+@include('rents.modals.contract')

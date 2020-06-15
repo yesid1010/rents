@@ -6,6 +6,7 @@
                 <th class="text-center">Habitacion</th>
                 <th class="text-center">Fecha inicio</th>
                 <th class="text-center">Huella</th>
+                <th class="text-center">Contrato</th>
                 <th class="text-center">Servicios</th>
                 <th class="text-center">Cancelar Arriendo</th>
                 <th class="text-center">Detalles</th>
@@ -31,6 +32,20 @@
                         <label class="form-control-label">{{$rent->fingerprint}}</label>
                     @endif
                 </td>
+
+                <td class="text-center">
+                    @if($rent->contract == null )
+                        <button class="btn btn-primary" type="button"
+                            data-toggle="modal"
+                            data-id = "{{$rent->idRe}}"
+                            data-target="#abrirmodalContract">
+                            <i class="fa fa-plus "></i>
+                        </button>
+                    @else
+                    <a href="{{Storage::url($rent->contract)}}" class="col-md-6 form-control-label" target="_blank" rel="noopener noreferrer">Contrato</a>
+                    @endif
+                </td>
+
                 <td class="text-center">
                     @if($rent->status == 0 )
                         <button class="btn btn-primary" type="button"
