@@ -179,8 +179,13 @@ class RentController extends Controller
 
 // metodo para agregar un numero de huela a un arriendo
     public function fingerprint(Request $request){
+
         $rent = Rent::findOrFail($request->id);
 
+        if($request->hasFile('file')){
+            $rent->contract = $request->file('file')->store('public/contratos');
+        }
+        
         $rent->fingerprint = $request->fingerprint;
 
         $rent->save();
@@ -268,6 +273,7 @@ class RentController extends Controller
                         'rents.fingerprint as fingerprint',
                         'rents.status as statusRent',
                         'rents.habPrice as habPrice',
+                        'rents.contract as contract',
                         'rents.total as total')
                 ->where('rents.id','=',$id)
                 ->first();

@@ -55,6 +55,12 @@
                         <label class="col-md-6 form-control-label" for="unity">Habitacion:</label>
                         <label class="col-md-6 form-control-label" for="unity">{{$room->nameRoom}}</label> 
                     </div>
+
+                    <div class=" row">
+                        <label class="col-md-6 form-control-label" for="unity">Contrato:</label>
+                        <a href="{{Storage::url($rent->contract)}}" class="col-md-6 form-control-label" target="_blank" rel="noopener noreferrer">Contrato</a>
+                    </div>
+
                     <div class=" row">
                         <label class="col-md-6 form-control-label" for="unity">Estado:</label>
                         @if($rent->statusRent == 0)

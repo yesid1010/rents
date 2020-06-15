@@ -2,7 +2,7 @@
     <table id="tablaArriendos" class="table table-bordered table-striped">
         <thead class="bg-primary">
             <tr>
-                
+                <th class="text-center">Huesped</th>
                 <th class="text-center">Habitacion</th>
                 <th class="text-center">Fecha inicio</th>
                 <th class="text-center">Huella</th>

@@ -11,7 +11,7 @@
             </div>
             
             <div class="modal-body">
-                <form action="{{route('fingerprint')}}" method="post"  onsubmit="return checkSubmit();" class="form-horizontal">
+                <form action="{{route('fingerprint')}}" method="post"  enctype="multipart/form-data" onsubmit="return checkSubmit();" class="form-horizontal">
                     
                     {{csrf_field()}}
                     <input type="hidden" name="id" id="id" value=""> 
@@ -21,6 +21,13 @@
                         <div class="col-md-4">
                             <input type="number"  name="fingerprint" id="fingerprint"  required class="form-control" >  
                         </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-6 form-control-label" for="text-input">Contrato : </label>
+                        <div class="col-md-4">
+                            <input type="file"  name="file" id="file"  class="form-control" >  
+                        </div>    
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
