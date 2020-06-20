@@ -2,22 +2,22 @@
     <table id="tablaArriendos" class="table table-bordered table-striped">
         <thead class="bg-primary">
             <tr>
-                <th>Cliente</th>
-                <th>Habitacion</th>
-                <th>Fecha Inicio</th>
-                <th>Fecha Final</th> 
-                <th>Huella</th>
-                <th>Detalles</th>
-                <th>Imprimir</th>
+                <th class="text-center">Cliente</th>
+                <th class="text-center">Habitacion</th>
+                <th class="text-center">Fecha Inicio</th>
+                <th class="text-center">Fecha Final</th> 
+                <th class="text-center">Huella</th>
+                <th class="text-center">Detalles</th>
+                <th class="text-center">Enviar Factura</th>
             </tr>
         </thead>
 
         @foreach ($rents as $rent)
             <tr>
-                <td>{{$rent->identification}}</td>
-                <td>{{$rent->nameR}}</td>
-                <td>{{$rent->startdate}}</td>
-                <td>{{$rent->endingdate}}</td>
+                <td class="text-center">{{$rent->identification}}</td>
+                <td class="text-center">{{$rent->nameR}}</td>
+                <td class="text-center">{{$rent->startdate}}</td>
+                <td class="text-center">{{$rent->endingdate}}</td>
                 <td class="text-center">
                     @if($rent->fingerprint == 0 )
                         <button class="btn btn-primary" type="button"
@@ -37,22 +37,22 @@
                         @csrf
                         <input type="hidden" value="{{$rent->idRe}}" name="id">
                         <button class= "btn btn-success" type="submit">
-                            <i class="fa fa-pencil " aria-hidden="true"></i>
+                            <i class="fa fa-clone" aria-hidden="true"></i>
                         </button> 
                     </form>
                 </td>
 
                 <td class="text-center">
                   @if($rent->fingerprint != null && $rent->status == 1)  
-                    <form target="_blank" action="{{route('pdf',$rent->idRe)}}" method="get">
+                    <form  action="{{route('pdf',$rent->idRe)}}" method="get">
                         
                         <button class= "btn btn-danger" type="submit">
-                            <i class="fa fa-print" aria-hidden="true"></i>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
                         </button> 
                     </form>
                   @else
                     <button disabled class= "btn btn-secondary" type="submit">
-                        <i class="fa fa-print" aria-hidden="true"></i>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
                     </button> 
                 @endif
                 </td>

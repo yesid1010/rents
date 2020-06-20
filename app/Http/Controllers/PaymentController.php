@@ -10,6 +10,7 @@ use App\Rent_Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MailController;
 
 class PaymentController extends Controller
 {
@@ -158,7 +159,14 @@ class PaymentController extends Controller
                                           'rent'=>$rent,
                                           'rent_'=>$rent_,
                                           'services'=>$services]);
-        return $pdf->stream('pdf'.$id.'.pdf');
+
+        $mailController = new MailController();
+
+        $mailController->sendEmail($pdf,$huesped);
+        
+        alert()->success('Ok','!! Factura enviada con exito !!');
+        //return $pdf->stream('pdf'.$id.'.pdf');
+        return back();
     }
 
 

@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('services', 'ServiceController');
     Route::resource('payments', 'PaymentController');
     Route::resource('users', 'UserController');
+
+
 });
 Auth::routes();
-
-

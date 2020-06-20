@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="mt-3">
     <table id="tablaArriendos" class="table table-bordered table-striped">
         <thead class="bg-primary">
             <tr>
@@ -8,10 +8,10 @@
                 <th class="text-center">Huella</th>
                 <th class="text-center">Contrato</th>
                 <th class="text-center">Servicios</th>
-                <th class="text-center">Cancelar Arriendo</th>
+                <th class="text-center">Pagar Arriendo</th>
                 <th class="text-center">Detalles</th>
                 <th class="text-center">Cerrar Arriendo</th>
-                <th class="text-center">Imprimir</th>
+                <th class="text-center">Enviar Factura</th>
             </tr>
         </thead>
 
@@ -80,7 +80,7 @@
                         @csrf
                         <input type="hidden" value="{{$rent->idRe}}" name="id">
                         <button class= "btn btn-primary" type="submit">
-                            <i class="fa fa-pencil " aria-hidden="true"></i>
+                            <i class="fa fa-clone" aria-hidden="true"></i>
                         </button> 
                     </form>
                 </td>
@@ -100,15 +100,15 @@
                 </td>
                 <td class="text-center">
                   @if($rent->fingerprint != null )  
-                    <form target="_blank" action="{{route('pdf',$rent->idRe)}}" method="get">
+                    <form action="{{route('pdf',$rent->idRe)}}" method="get">
                         
                         <button class= "btn btn-danger" type="submit">
-                            <i class="fa fa-print" aria-hidden="true"></i>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
                         </button> 
                     </form>
                   @else
                     <button disabled class= "btn btn-secondary" type="submit">
-                        <i class="fa fa-print" aria-hidden="true"></i>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
                     </button> 
                 @endif
                 </td>
