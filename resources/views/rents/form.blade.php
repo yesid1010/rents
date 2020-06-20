@@ -41,8 +41,8 @@
 
 <div class="modal-footer">
   
-  <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
-  <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button> 
+  <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+  <button type="submit" class="btn btn-danger"><i class="fa fa-save"></i> Guardar</button> 
 </div>
 
 

@@ -2,10 +2,10 @@
 <!--- MODALES --->
 <!--Inicio del modal agregar-->
 <div class="modal fade" id="abrirmodalRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-dialog modal-danger" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Agregar Habitacion</h4>
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-white">Agregar Habitacion</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -27,10 +27,10 @@
 
 <!--Inicio del modal editar-->
 <div class="modal fade" id="abrirmodalEditarRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-primary" role="document">
+    <div class="modal-dialog modal-danger" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Detalles Habitacion</h4>
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-white">Detalles Habitacion</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -56,10 +56,10 @@
 
 <!--Inicio del modal de eliminar-->
 <div class="modal fade" id="abrirmodalEliminarRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-primary " role="document">
+    <div class="modal-dialog modal-danger " role="document">
         <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h4 class="modal-title">¿ Está seguro de realizar esta acción?</h4>
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-white">¿ Está seguro de realizar esta acción?</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -71,8 +71,8 @@
                     {{csrf_field()}}   
                     <input type="hidden" name="id" id="id" value="">  
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Aceptar</button> 
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-save"></i> Aceptar</button> 
                     </div>
                 </form>
             </div>
@@ -87,10 +87,10 @@
 
  <!--Inicio del modal agregar rol-->
  <div class="modal fade" id="abrirmodalArrendarRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-primary modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-danger modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Agregar Arriendo</h4>
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-white">Agregar Arriendo</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>

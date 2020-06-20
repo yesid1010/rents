@@ -3,8 +3,8 @@
     <div class="modal-dialog modal-dialog-scrollable modal-primary modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger">
-                <h4 class="modal-title">Agregar Abono  </h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h4 class="modal-title text-white">Agregar Abono  </h4>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>

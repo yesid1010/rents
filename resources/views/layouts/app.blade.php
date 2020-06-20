@@ -30,14 +30,14 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm navbar-fixed-top">
+        <nav class="navbar navbar-expand-md navbar-light bg-danger shadow-sm navbar-fixed-top">
             <div class="container">
                 @if(Auth::check())
-                    <a class="navbar-brand " href="{{ url('/rooms') }}">
+                    <a class="navbar-brand text-white" href="{{ url('/rooms') }}">
                         Habitaciones
                     </a>
                 @else 
-                    <a class="navbar-brand" href="{{ url('/rooms') }}">
+                    <a class="navbar-brand text-white" href="{{ url('/rooms') }}">
                         Home
                     </a>
                 @endif
@@ -50,7 +50,7 @@
                     <ul class="navbar-nav mr-auto">
                         @if(Auth::check())
                             <li	class="nav-item	dropdown navbar-brand ">
-                                <a	class="nav-link	dropdown-toggle"
+                                <a	class="nav-link text-white	dropdown-toggle"
                                     data-toggle="dropdown"
                                     href="#"
                                     role="button"
@@ -80,13 +80,13 @@
                             </li>
 
                             <li class="nav-item navbar-brand">
-                                <a class="nav-link" href="{{ route('services.index') }}">{{ __('Servicios') }}</a>
+                                <a class="nav-link text-white" href="{{ route('services.index') }}">{{ __('Servicios') }}</a>
                             {{-- </li>
                             <li class="nav-item navbar-brand">
                                 <a class="nav-link" href="{{ route('payments.index') }}">{{ __('Pagos') }}</a>
                             </li> --}}
                             <li class="nav-item navbar-brand">
-                                <a class="nav-link" href="{{ route('users.index') }}">{{ __('Clientes') }}</a>
+                                <a class="nav-link text-white" href="{{ route('users.index') }}">{{ __('Clientes') }}</a>
                             </li>
 
                         @endif
@@ -97,16 +97,16 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }}</b> </a>
+                                <a class="nav-link text-white" href="{{ route('login') }}"><b>{{ __('Login') }}</b> </a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}"><b>{{ __('Register') }}</b> </a>
+                                    <a class="nav-link text-white" href="{{ route('register') }}"><b>{{ __('Register') }}</b> </a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link navbar-brand dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 

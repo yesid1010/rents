@@ -1,11 +1,11 @@
 
  <!--Inicio del modal contract-->
  <div class="modal fade" id="abrirmodalContract" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-primary modal-md" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-danger modal-md" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Agregar Contracto</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-white">Agregar Contracto</h4>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
@@ -22,8 +22,8 @@
                     </div>
                     
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button> 
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-save"></i> Guardar</button> 
                     </div>
                 </form>
             </div>

@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header">     
             <h3 class="float-left">Listado de Habitaciones</h3>       
-            <button class="btn btn-primary float-right mt-1" type="button" data-toggle="modal" data-target="#abrirmodalRoom">
+            <button class="btn btn-danger float-right mt-1" type="button" data-toggle="modal" data-target="#abrirmodalRoom">
                 <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Habitacion
             </button>
         </div>
@@ -37,8 +37,8 @@
                         <div class="card-header">
 
                             <div class="row">
-                                <div class="col-md-6">{{$room->name}}</div>
-                                <div class="col-md-6">
+                                <div class="col-md-7">{{$room->name}}</div>
+                                <div class="col-md-5">
                                     {{-- Si la habitacion no ha sido arrendada por primera vez --}} 
                                     @if(count($room->rents) == 0) 
                                         <button class="btn btn-outline-success float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
@@ -85,8 +85,8 @@
                     <div class="card text-danger border-danger mb-3" style="max-width: 18rem;">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-6">{{$room->name}}</div>
-                            <div class="col-md-6">
+                            <div class="col-md-7">{{$room->name}}</div>
+                            <div class="col-md-5">
                                 <form action="{{route('rentsroom')}}" method="get">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$room->id}}">

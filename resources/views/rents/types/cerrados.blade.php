@@ -1,14 +1,14 @@
 <div class="card-body">
     <table id="tablaArriendos" class="table table-bordered table-striped">
-        <thead class="bg-primary">
+        <thead class="bg-danger">
             <tr>
-                <th class="text-center">Cliente</th>
-                <th class="text-center">Habitacion</th>
-                <th class="text-center">Fecha Inicio</th>
-                <th class="text-center">Fecha Final</th> 
-                <th class="text-center">Huella</th>
-                <th class="text-center">Detalles</th>
-                <th class="text-center">Enviar Factura</th>
+                <th class="text-center text-white">Cliente</th>
+                <th class="text-center text-white">Habitacion</th>
+                <th class="text-center text-white">Fecha Inicio</th>
+                <th class="text-center text-white">Fecha Final</th> 
+                <th class="text-center text-white">Huella</th>
+                <th class="text-center text-white">Detalles</th>
+                <th class="text-center text-white">Enviar Factura</th>
             </tr>
         </thead>
 
@@ -36,7 +36,7 @@
                     <form action="{{route('detailr')}}" method="get">
                         @csrf
                         <input type="hidden" value="{{$rent->idRe}}" name="id">
-                        <button class= "btn btn-success" type="submit">
+                        <button class= "btn btn-danger" type="submit">
                             <i class="fa fa-clone" aria-hidden="true"></i>
                         </button> 
                     </form>
@@ -51,7 +51,7 @@
                         </button> 
                     </form>
                   @else
-                    <button disabled class= "btn btn-secondary" type="submit">
+                    <button disabled class= "btn btn-danger" type="submit">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
                     </button> 
                 @endif

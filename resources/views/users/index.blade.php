@@ -5,14 +5,14 @@
 
     <div class="card-body">
         <table id="tablaClientes" class="table table-bordered table-striped">
-            <thead class="bg-primary">
+            <thead class="bg-danger">
                 <tr>
-                    <th>identificacion</th>
-                    <th>Nombre</th>
-                    <th>telefono</th>
-                    <th>telefono familiar</th>
-                    <th>correo</th>  
-                    <th>Historial</th>
+                    <th class="text-center text-white">identificacion</th>
+                    <th class="text-center text-white">Nombre</th>
+                    <th class="text-center text-white">telefono</th>
+                    <th class="text-center text-white">telefono familiar</th>
+                    <th class="text-center text-white">correo</th>  
+                    <th class="text-center text-white">Historial</th>
                 </tr>
             </thead>
 
@@ -27,7 +27,7 @@
                     <form action="{{route('rentus')}}" method="get">
                         @csrf
                         <input type="hidden" name="id" value="{{$user->id}}">
-                        <button class= "btn btn-primary" type="submit">
+                        <button class= "btn btn-danger" type="submit">
                             <i class="fa fa-newspaper-o" aria-hidden="true"></i>
                         </button> 
                     </form>

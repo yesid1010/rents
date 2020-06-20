@@ -1,17 +1,17 @@
 <div class="mt-3">
     <table id="tablaArriendos" class="table table-bordered table-striped">
-        <thead class="bg-primary">
+        <thead class="bg-danger">
             <tr>
-                <th class="text-center">Huesped</th>
-                <th class="text-center">Habitacion</th>
-                <th class="text-center">Fecha inicio</th>
-                <th class="text-center">Huella</th>
-                <th class="text-center">Contrato</th>
-                <th class="text-center">Servicios</th>
-                <th class="text-center">Pagar Arriendo</th>
-                <th class="text-center">Detalles</th>
-                <th class="text-center">Cerrar Arriendo</th>
-                <th class="text-center">Enviar Factura</th>
+                <th class="text-center text-white">Huesped</th>
+                <th class="text-center text-white">Habitacion</th>
+                <th class="text-center text-white">Fecha inicio</th>
+                <th class="text-center text-white">Huella</th>
+                <th class="text-center text-white">Contrato</th>
+                <th class="text-center text-white">Servicios</th>
+                <th class="text-center text-white">Pagar Arriendo</th>
+                <th class="text-center text-white">Detalles</th>
+                <th class="text-center text-white">Cerrar Arriendo</th>
+                <th class="text-center text-white">Enviar Factura</th>
             </tr>
         </thead>
 
@@ -22,7 +22,7 @@
                 <td>{{$rent->startdate}}</td>
                 <td class="text-center">
                     @if($rent->fingerprint == 0 )
-                        <button class="btn btn-primary" type="button"
+                        <button class="btn btn-danger" type="button"
                             data-toggle="modal"
                             data-id = "{{$rent->idRe}}"
                             data-target="#abrirmodalFingerprint">
@@ -35,20 +35,20 @@
 
                 <td class="text-center">
                     @if($rent->contract == null )
-                        <button class="btn btn-primary" type="button"
+                        <button class="btn btn-danger" type="button"
                             data-toggle="modal"
                             data-id = "{{$rent->idRe}}"
                             data-target="#abrirmodalContract">
                             <i class="fa fa-plus "></i>
                         </button>
                     @else
-                    <a href="{{Storage::url($rent->contract)}}" class="col-md-6 form-control-label" target="_blank" rel="noopener noreferrer">Contrato</a>
+                    <a href="{{Storage::url($rent->contract)}}" class="col-md-6 text-danger form-control-label" target="_blank" rel="noopener noreferrer">Contrato</a>
                     @endif
                 </td>
 
                 <td class="text-center">
                     @if($rent->status == 0 )
-                        <button class="btn btn-primary" type="button"
+                        <button class="btn btn-danger" type="button"
                             data-toggle="modal"
                             data-id = "{{$rent->idRe}}"
                             data-target="#abrirmodalAgregarServicio">
@@ -62,7 +62,7 @@
                 </td>
                 <td class="text-center">
                     @if($rent->status == 0 )
-                        <button  class="btn  btn-success" type="button"
+                        <button  class="btn  btn-danger" type="button"
                                 data-toggle="modal"
                                 data-id="{{$rent->idRe}}"
                                 data-total = "{{ number_format($rent->total, 0 ) }}"
@@ -79,7 +79,7 @@
                     <form action="{{route('detailr')}}" method="get">
                         @csrf
                         <input type="hidden" value="{{$rent->idRe}}" name="id">
-                        <button class= "btn btn-primary" type="submit">
+                        <button class= "btn btn-danger" type="submit">
                             <i class="fa fa-clone" aria-hidden="true"></i>
                         </button> 
                     </form>

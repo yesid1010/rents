@@ -90,6 +90,7 @@ class RoomController extends Controller
                  'rents.endingdate as endingdate',
                  'rents.status as status',
                  'rents.total as total',
+                 'rents.contract as contract',
                  'rooms.id as idR','users.id as idU',
                  'rents.id as idRe')
                  ->where('rents.room_id','=',$id)

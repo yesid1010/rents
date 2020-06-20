@@ -5,8 +5,8 @@
     <div class="row">
       <div class="col-md-6">
             <div class="card">
-                <div class="card-header bg-primary">
-                    <strong>Información del cliente</strong> 
+                <div class="card-header bg-danger">
+                    <strong class="text-white">Información del cliente</strong> 
                  </div>
                 <div class="card-body">
                     <div class=" row">
@@ -25,9 +25,14 @@
                         <label class="col-md-6 form-control-label" for="unity">Telefono :</label>
                         <label class="col-md-6 form-control-label" for="unity">{{$user->telephone}}</label> 
                     </div>
+
                     <div class=" row">
                         <label class="col-md-6 form-control-label" for="unity">Contacto familiar:</label>
                         <label class="col-md-6 form-control-label" for="unity">{{$user->family_telephone}}</label> 
+                    </div>
+                    <div class=" row">
+                        <label class="col-md-6 form-control-label" for="unity">&nbsp;</label>
+                        <label class="col-md-6 form-control-label" for="unity">&nbsp;</label> 
                     </div>
 
                 </div>
@@ -35,8 +40,8 @@
       </div>
       <div class="col-md-6">
             <div class="card">
-                <div class="card-header bg-primary">
-                    <strong>Información del Arriendo</strong> 
+                <div class="card-header bg-danger">
+                    <strong class="text-white">Información del Arriendo</strong> 
                  </div>
                 <div class="card-body">
                     <div class=" row">
@@ -58,8 +63,12 @@
 
                     <div class=" row">
                         <label class="col-md-6 form-control-label" for="unity">Contrato:</label>
-                        <a href="{{Storage::url($rent->contract)}}" class="col-md-6 form-control-label" target="_blank" rel="noopener noreferrer">Contrato</a>
-                    </div>
+                        @if($rent->contract != null )
+                            <a href="{{Storage::url($rent->contract)}}" class="col-md-6 form-control-label" target="_blank" rel="noopener noreferrer">Contrato</a>
+                        @else
+                        <label class="col-md-6 form-control-label" for="unity">no hay contrato adjunto</label>
+                        @endif
+                        </div>
 
                     <div class=" row">
                         <label class="col-md-6 form-control-label" for="unity">Estado:</label>
@@ -77,8 +86,8 @@
     <div class="row mt-5">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header bg-primary">
-                    <strong>Informacion de pago total</strong> 
+                <div class="card-header bg-danger">
+                    <strong class="text-white">Informacion de pago total</strong> 
                 </div>
                 <div class="card-body">
                     <div class=" row">
@@ -98,7 +107,7 @@
                                 <label class="col-md-4 form-control-label" for="unity"> {{number_format($service->priceService, 0 )}}</label> 
 
                                 
-                                    <button class="btn btn-outline-dark  col-md-1 mx-1 mb-1" type="button"
+                                    <button class="btn btn-outline-danger  col-md-1 mx-1 mb-1" type="button"
                                             data-target= "#abrirmodaldetalle"
                                             data-toggle = "modal"
                                             data-date = "{{$service->created_at}}"
@@ -131,7 +140,7 @@
                             <div class=" row">
                                 <label class="col-md-5 form-control-label" for="unity">{{$abono->created_at}}</label>
                                 <label class="col-md-4 form-control-label" for="unity">{{number_format($abono->total, 0 )}}</label> 
-                                <button class="btn btn-outline-dark mx-1 col-md-1 mb-1" type="button"
+                                <button class="btn btn-outline-danger mx-1 col-md-1 mb-1" type="button"
                                     data-target= "#abrirmodaldetalle"
                                     data-toggle = "modal"
                                     data-date = "{{$abono->created_at}}"
@@ -162,7 +171,7 @@
     {{-- @if($rent->statusRent)
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header bg-primary">
+                <div class="card-header bg-danger">
                     <strong>Informacion del pago </strong> 
                 </div>
                 <div class="card-body">
@@ -185,10 +194,10 @@
 {{-- modales --}}
  <!--Inicio del modal detalle-->
  <div class="modal fade" id="abrirmodaldetalle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-primary modal-md" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-danger modal-md" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Detalle</h4>
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-white">Detalle</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -220,10 +229,10 @@
 <!--Fin del modal detalle-->
 <!--Inicio del modal de eliminar-->
 <div class="modal fade" id="abrirmodalEliminarServicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-primary " role="document">
+    <div class="modal-dialog modal-danger " role="document">
         <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h4 class="modal-title">¿ Está seguro de realizar esta acción?</h4>
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-white">¿ Está seguro de realizar esta acción?</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -235,8 +244,8 @@
                     {{csrf_field()}}   
                     <input type="hidden" name="id" id="id" value="">  
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Aceptar</button> 
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-save"></i> Aceptar</button> 
                     </div>
                 </form>
             </div>
@@ -249,10 +258,10 @@
 <!--Fin del modal-->
 <!--Inicio del modal de eliminar-->
 <div class="modal fade" id="abrirmodalEliminarPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-primary " role="document">
+    <div class="modal-dialog modal-danger " role="document">
         <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h4 class="modal-title">¿ Está seguro de realizar esta acción?</h4>
+            <div class="modal-header bg-danger">
+                <h4 class="modal-title text-white">¿ Está seguro de realizar esta acción?</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -264,8 +273,8 @@
                     {{csrf_field()}}   
                     <input type="hidden" name="id" id="id" value="">  
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Aceptar</button> 
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-save"></i> Aceptar</button> 
                     </div>
                 </form>
             </div>

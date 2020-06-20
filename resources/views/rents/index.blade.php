@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header">     
             <h3 class="float-left">Listado de Arriendos</h3>       
-            <button class="btn btn-primary float-right mt-1" type="button" data-toggle="modal" data-target="#abrirmodalAddRent">
+            <button class="btn btn-danger float-right mt-1" type="button" data-toggle="modal" data-target="#abrirmodalAddRent">
                 <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Arriendo
             </button>
         </div>

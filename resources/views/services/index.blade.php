@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header">     
             <h3 class="float-left">Listado de Servicios</h3>       
-            <button class="btn btn-primary float-right mt-1" type="button" data-toggle="modal" data-target="#abrirmodalService">
+            <button class="btn btn-danger float-right mt-1" type="button" data-toggle="modal" data-target="#abrirmodalService">
                 <i class="fa fa-plus "></i>&nbsp;&nbsp;Agregar Servicio
             </button>
         </div>
@@ -13,13 +13,13 @@
 
     <div class="card-body">
         <table id="tablaServicios" class="table table-bordered table-striped">
-            <thead class="bg-primary">
+            <thead class="bg-danger">
                 <tr>
-                    <th class="text-center">Nombre</th>
-                    <th class="text-center">precio</th>
-                    <th class="text-center">Descripción</th>
-                    <th class="text-center">Editar</th>  
-                    <th class="text-center">Eliminar</th> 
+                    <th class="text-center text-white">Nombre</th>
+                    <th class="text-center text-white">precio</th>
+                    <th class="text-center text-white">Descripción</th>
+                    <th class="text-center text-white">Editar</th>  
+                    <th class="text-center text-white">Eliminar</th> 
                 </tr>
             </thead>
 
@@ -29,7 +29,7 @@
                     <td class="text-center">{{$service->price}}</td>
                     <td class="text-center">{{$service->description}}</td>
                     <td class="text-center"> 
-                        <button class="btn btn-primary" type="button"
+                        <button class="btn btn-danger" type="button"
                             data-target="#abrirmodalEditarService"
                             data-toggle="modal" 
                             data-id="{{$service->id}}"
