@@ -32,8 +32,9 @@
             
         {{-- Si la habitacion no está arrendada --}}
             @if($room->status == 0)
+                
                 <div class="col-md-3 mt-4">
-                    <div class="card text-success border-success mb-3" style="max-width: 18rem;">
+                    <div class="card text-secondary border-secondary mb-3" style="max-width: 18rem;">
                         <div class="card-header">
 
                             <div class="row">
@@ -41,14 +42,14 @@
                                 <div class="col-md-5">
                                     {{-- Si la habitacion no ha sido arrendada por primera vez --}} 
                                     @if(count($room->rents) == 0) 
-                                        <button class="btn btn-outline-success float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
+                                        <button class="btn btn-outline-secondary float-right" data-id="{{$room->id}}" type="button" data-toggle="modal" data-target="#abrirmodalEliminarRoom">
                                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                                         </button>
                                     @else
                                         <form action="{{route('rentsroom')}}" method="get">
                                             @csrf
                                             <input type="hidden" name="id" value="{{$room->id}}">
-                                            <button class= " btn btn-outline-success float-right" type="submit">
+                                            <button class= " btn btn-outline-secondary float-right" type="submit">
                                             Historial
                                             </button> 
                                         </form>
@@ -61,13 +62,13 @@
                                 <h5 class="card-title">Precio: {{ number_format($room->price, 0 ) }}</h5>        
                             </div>
                             <div class="card-footer">
-                                <button class="btn btn-outline-success" type="button"
+                                <button class="btn btn-outline-secondary" type="button"
                                         data-toggle="modal"
                                         data-id = "{{$room->id}}"
                                         data-target="#abrirmodalArrendarRoom">
                                     Arrendar
                                 </button>
-                                <button class="btn btn-outline-success" type="button"
+                                <button class="btn btn-outline-secondary" type="button"
                                     data-target="#abrirmodalEditarRoom"
                                     data-toggle="modal" 
                                     data-id="{{$room->id}}"

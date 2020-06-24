@@ -81,10 +81,7 @@
 
                             <li class="nav-item navbar-brand">
                                 <a class="nav-link text-white" href="{{ route('services.index') }}">{{ __('Servicios') }}</a>
-                            {{-- </li>
-                            <li class="nav-item navbar-brand">
-                                <a class="nav-link" href="{{ route('payments.index') }}">{{ __('Pagos') }}</a>
-                            </li> --}}
+
                             <li class="nav-item navbar-brand">
                                 <a class="nav-link text-white" href="{{ route('users.index') }}">{{ __('Clientes') }}</a>
                             </li>
@@ -111,16 +108,22 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
+                                    
+                                    <a class="dropdown-item" href="{{route('edit')}}">Perfil</a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        {{ __('Salir') }}
+                                 </a>
+
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                     @csrf
+                                 </form>
                                 </div>
+                                
                             </li>
                         @endguest
                     </ul>

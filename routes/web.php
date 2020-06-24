@@ -54,6 +54,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('rentus','UserController@Rents')->name('rentus');
     Route::get('rentroom','RoomController@Rents')->name('rentsroom');
 
+    Route::get('edit','UserController@edit')->name('edit');
+    Route::put('password','UserController@updatePassword')->name('passedit');
+
+
     Route::resource('rooms', 'RoomController');
     Route::resource('rents', 'RentController');
     Route::resource('services', 'ServiceController');

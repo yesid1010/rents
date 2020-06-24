@@ -8,6 +8,8 @@ use App\User;
 use App\Rent;
 use App\Service;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     //
@@ -64,5 +66,42 @@ class UserController extends Controller
                 ->where('rents.user_id','=',$id)
                 ->orderBy('idRe', 'desc')
                 ->get();
+    }
+
+
+    public function edit(){
+        $user = Auth::user();
+        return view('users.profile.index',['user'=>$user]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        
+        $user = Auth::user();
+        
+        $user->identification = $request->identification;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->telephone = $request->telephone;
+
+        $user->save();
+        alert()->success('Ok', '!! Perfil actualizado !!')->autoclose(3000);
+        return back();
+    }
+
+    public function updatePassword(Request $request){
+        $user  = Auth::user();
+        $actualypassword = $request->input('actualypassword');
+
+        if (Hash::check($actualypassword,$user->password)){
+            $user->password = bcrypt($request->input('newpassword'));
+            $user->save();
+            alert()->success('OK', '!!Contraseña Actualizada con exito!!')->autoclose(3000);
+            return back();
+        }
+        else{
+            alert()->error('OK', '!!Error al cambiar contraseña!!')->autoclose(3000);
+            return back();
+        }
     }
 }

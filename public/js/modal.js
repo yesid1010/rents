@@ -32,6 +32,24 @@ $('#abrirmodalEditarService').on('show.bs.modal',function(event){
 })
 
 
+$('#abrirmodalEditarProfile').on('show.bs.modal',function(event){
+    var button = $(event.relatedTarget)
+    var identification_modal_editar = button.data('identification')
+    var name_modal_editar = button.data('name')
+    var email_modal_editar = button.data('email')
+    var telephone_modal_editar = button.data('telephone')
+    var id = button.data('id')
+
+    var modal = $(this)
+
+    modal.find('.modal-body #identification').val(identification_modal_editar);
+    modal.find('.modal-body #name').val(name_modal_editar);
+    modal.find('.modal-body #email').val(email_modal_editar);
+    modal.find('.modal-body #telephone').val(telephone_modal_editar);
+    modal.find('.modal-body #id').val(id);
+
+})
+
 $('#abrirmodalEliminarRoom').on('show.bs.modal',function(event){
     var button = $(event.relatedTarget)
     var id = button.data('id')
@@ -151,7 +169,18 @@ $('#abrirmodaldetalle').on('show.bs.modal',function(event){
 
 })
 
+//mostrar cobtraseñas del input
 
+function mostrarPassword(id){
+    var cambio = document.getElementById(id);
+    if(cambio.type == "password"){
+        cambio.type = "text";
+        $('#'+id).removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+    }else{
+        cambio.type = "password";
+        $('#'+id).removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+    }
+} 
 
 
 $(".alert").fadeOut(4000 );
